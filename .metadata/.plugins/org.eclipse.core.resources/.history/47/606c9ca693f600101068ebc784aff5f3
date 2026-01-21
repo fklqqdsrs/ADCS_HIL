@@ -126,7 +126,7 @@ void StartDefaultTask(void const * argument)
   /* USER CODE BEGIN StartDefaultTask */
   udpecho_init();
   hil_sensor_emulator_init();
-//  printf("UDP Echo server successfully initialized!\n");
+  printf("UDP Echo server successfully initialized!\n");
   /* Infinite loop */
   for(;;)
   {

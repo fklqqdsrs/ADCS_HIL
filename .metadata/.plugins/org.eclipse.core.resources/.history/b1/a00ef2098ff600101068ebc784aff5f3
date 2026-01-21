@@ -8,19 +8,21 @@
 #include "gnss_protocal.h"
 
 
-gps_time_t unix_to_gps(uint32_t unix, uint8_t leap_sec)
+uint8_t unix_to_gps(uint32_t unix,uint8_t leap_sec,uint16_t *week,uint32_t *msec)
 {
 
-	gps_time_t gps_time;
-    int64_t sec = ((int64_t)unix - (int64_t)UNIX_GPS_EPOCH_OFFSET) + (int64_t)leap_sec;
 
 
-    gps_time.gps_week = (uint16_t)(sec / (int64_t)SECONDS_IN_WEEK);
+	    int64_t sec = (unix - UNIX_GPS_EPOCH_OFFSET) + leap_sec;
 
-    int64_t seconds_into_week = sec % (int64_t)SECONDS_IN_WEEK;
-    gps_time.gps_msec = (uint32_t)(seconds_into_week * 1000LL);
 
-    return gps_time;
+	    week = (uint16_t)(sec / SECONDS_IN_WEEK);
+
+	    int64_t seconds_into_week = sec % SECONDS_IN_WEEK;
+	    msec = (uint32_t)(seconds_into_week * 1000);
+
+	    return 1;
+
 }
 
 uint8_t msg_default_congfig(bestXYZ_format_t *msg)

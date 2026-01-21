@@ -14,7 +14,7 @@
 #define UNIX_GPS_EPOCH_OFFSET 315964800LL
 #define SECONDS_IN_WEEK 604800LL
 
-typedef struct __attribute__((packed)) {
+typedef struct __attribute__((packed)){
 	uint8_t  sync[3];
 	uint8_t  header_length;
 	uint8_t  msg_id[2];
@@ -32,15 +32,15 @@ typedef struct __attribute__((packed)) {
 
 }binary_header_format_t;
 
-typedef struct __attribute__((packed)) {
+typedef struct __attribute__((packed)){
 	uint32_t  psol_stat;
 	uint32_t  pos_type;
 	double    pos[3];
-	float    pos_sd[3];
+	double    pos_sd[3];
 	uint32_t  vsol_stat;
 	uint32_t  vel_type;
 	double    vel[3];
-	float    vel_sd[3];
+	double    vel_sd[3];
 	char      stn_id[4];
 	float     v_latcency;
 	float     diff_age;
@@ -57,19 +57,13 @@ typedef struct __attribute__((packed)) {
 
 }bestXYZ_payload_format_t;
 
-typedef struct __attribute__((packed)) {
+typedef struct __attribute__((packed)){
 	binary_header_format_t header;
 	bestXYZ_payload_format_t ecef;
 
 }bestXYZ_format_t;
 
-typedef struct __attribute__((packed)) {
-	uint16_t gps_week;
-	uint32_t gps_msec;
-
-}gps_time_t;
-
-gps_time_t unix_to_gps(uint32_t unix,uint8_t leap_sec);
+uint8_t unix_to_gps(uint32_t unix,uint8_t leap_sec,uint16_t *week,uint32_t *msec);
 uint8_t msg_default_congfig(bestXYZ_format_t *msg);
 
 

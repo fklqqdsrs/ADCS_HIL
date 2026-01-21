@@ -7,4 +7,4 @@
 ../Core/Src/hil_sensor_emulator.c:343:6:hil_mag_request_notify_from_isr	16	static,ignoring_inline_asm
 ../Core/Src/hil_sensor_emulator.c:354:6:hil_fss_request_notify_from_isr	16	static,ignoring_inline_asm
 ../Core/Src/hil_sensor_emulator.c:408:13:hil_gnss_task	80	static
-../Core/Src/hil_sensor_emulator.c:426:13:hil_gnss_tx_can	24	static
+../Core/Src/hil_sensor_emulator.c:426:13:hil_gnss_tx_can	32	static

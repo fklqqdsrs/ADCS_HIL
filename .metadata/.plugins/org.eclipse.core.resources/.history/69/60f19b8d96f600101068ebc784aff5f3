@@ -430,10 +430,7 @@ static void hil_gnss_tx_can(const double ecef_pos[3], const double ecef_vel[3], 
   (void)unix_time;
 
   unix_time = (uint32_t)unix_time;
-  gps_time_t GPStime = unix_to_gps(unix_time, 18);
-
-  ecef_msg.header.week = GPStime.gps_week;
-  ecef_msg.header.msec = GPStime.gps_msec;
+  unix_to_gps(unix_time, 18, &ecef_msg.header.week, &ecef_msg.header.msec);
 
   ecef_msg.ecef.pos[0] = ecef_pos[0];
   ecef_msg.ecef.pos[1] = ecef_pos[1];

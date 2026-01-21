@@ -63,13 +63,7 @@ typedef struct __attribute__((packed)) {
 
 }bestXYZ_format_t;
 
-typedef struct __attribute__((packed)) {
-	uint16_t gps_week;
-	uint32_t gps_msec;
-
-}gps_time_t;
-
-gps_time_t unix_to_gps(uint32_t unix,uint8_t leap_sec);
+uint8_t unix_to_gps(uint32_t unix,uint8_t leap_sec,uint16_t *week,uint32_t *msec);
 uint8_t msg_default_congfig(bestXYZ_format_t *msg);
 
 

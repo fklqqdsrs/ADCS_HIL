@@ -18,9 +18,9 @@ gps_time_t unix_to_gps(uint32_t unix, uint8_t leap_sec)
     gps_time.gps_week = (uint16_t)(sec / (int64_t)SECONDS_IN_WEEK);
 
     int64_t seconds_into_week = sec % (int64_t)SECONDS_IN_WEEK;
-    gps_time.gps_msec = (uint32_t)(seconds_into_week * 1000LL);
+    *msec = (uint32_t)(seconds_into_week * 1000LL);
 
-    return gps_time;
+    return 1;
 }
 
 uint8_t msg_default_congfig(bestXYZ_format_t *msg)

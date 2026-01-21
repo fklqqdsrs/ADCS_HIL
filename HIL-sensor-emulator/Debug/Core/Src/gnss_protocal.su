@@ -1,2 +1,2 @@
-../Core/Src/gnss_protocal.c:11:9:unix_to_gps	72	static
-../Core/Src/gnss_protocal.c:28:9:msg_default_congfig	16	static
+../Core/Src/gnss_protocal.c:11:12:unix_to_gps	80	static
+../Core/Src/gnss_protocal.c:26:9:msg_default_congfig	16	static
