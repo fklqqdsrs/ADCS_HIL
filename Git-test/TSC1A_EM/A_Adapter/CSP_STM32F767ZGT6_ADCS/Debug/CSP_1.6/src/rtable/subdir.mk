@@ -1,0 +1,37 @@
+################################################################################
+# Automatically-generated file. Do not edit!
+# Toolchain: GNU Tools for STM32 (12.3.rel1)
+################################################################################
+
+# Add inputs and outputs from these tool invocations to the build variables 
+C_SRCS += \
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable.c \
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable_cidr.c \
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable_static.c 
+
+C_DEPS += \
+./CSP_1.6/src/rtable/csp_rtable.d \
+./CSP_1.6/src/rtable/csp_rtable_cidr.d \
+./CSP_1.6/src/rtable/csp_rtable_static.d 
+
+OBJS += \
+./CSP_1.6/src/rtable/csp_rtable.o \
+./CSP_1.6/src/rtable/csp_rtable_cidr.o \
+./CSP_1.6/src/rtable/csp_rtable_static.o 
+
+
+# Each subdirectory must supply rules for building sources it contributes
+CSP_1.6/src/rtable/csp_rtable.o: C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable.c CSP_1.6/src/rtable/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I"C:/Users/thaib/OneDrive/Documents/CSP_1.6" -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+CSP_1.6/src/rtable/csp_rtable_cidr.o: C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable_cidr.c CSP_1.6/src/rtable/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I"C:/Users/thaib/OneDrive/Documents/CSP_1.6" -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+CSP_1.6/src/rtable/csp_rtable_static.o: C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/rtable/csp_rtable_static.c CSP_1.6/src/rtable/subdir.mk
+	arm-none-eabi-gcc "$<" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Drivers/CMSIS/Include -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I"C:/Users/thaib/OneDrive/Documents/CSP_1.6" -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS_V2 -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"$(@:%.o=%.d)" -MT"$@" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "$@"
+
+clean: clean-CSP_1-2e-6-2f-src-2f-rtable
+
+clean-CSP_1-2e-6-2f-src-2f-rtable:
+	-$(RM) ./CSP_1.6/src/rtable/csp_rtable.cyclo ./CSP_1.6/src/rtable/csp_rtable.d ./CSP_1.6/src/rtable/csp_rtable.o ./CSP_1.6/src/rtable/csp_rtable.su ./CSP_1.6/src/rtable/csp_rtable_cidr.cyclo ./CSP_1.6/src/rtable/csp_rtable_cidr.d ./CSP_1.6/src/rtable/csp_rtable_cidr.o ./CSP_1.6/src/rtable/csp_rtable_cidr.su ./CSP_1.6/src/rtable/csp_rtable_static.cyclo ./CSP_1.6/src/rtable/csp_rtable_static.d ./CSP_1.6/src/rtable/csp_rtable_static.o ./CSP_1.6/src/rtable/csp_rtable_static.su
+
+.PHONY: clean-CSP_1-2e-6-2f-src-2f-rtable
+

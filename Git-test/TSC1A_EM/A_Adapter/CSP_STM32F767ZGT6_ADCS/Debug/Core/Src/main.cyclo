@@ -1,0 +1,15 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/include/csp/csp_rtable.h:157:20:void csp_route_print_table()	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/include/csp/csp_rtable.h:165:20:void csp_route_print_interfaces()	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/include/csp/csp.h:67:20:void csp_conf_get_defaults(csp_conf_t*)	1
+../Core/Src/main.cpp:82:1:csp_thread_return_t task_server(void*)	7
+../Core/Src/main.cpp:136:1:csp_thread_return_t task_client(void*)	3
+../Core/Src/main.cpp:191:5:int test_csp_server_task(unsigned int, unsigned int)	3
+../Core/Src/main.cpp:200:5:int test_csp_client_task(unsigned int, unsigned int)	3
+../Core/Src/main.cpp:209:5:int test_csp_server_client_task(unsigned int, unsigned int)	5
+../Core/Src/main.cpp:228:5:int main()	6
+../Core/Src/main.cpp:349:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:393:13:void MX_CAN3_Init()	2
+../Core/Src/main.cpp:428:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:462:6:void StartDefaultTask(void*)	1
+../Core/Src/main.cpp:473:6:void MPU_Config()	1
+../Core/Src/main.cpp:503:6:void Error_Handler()	1

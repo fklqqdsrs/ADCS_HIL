@@ -1,0 +1,13 @@
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:14:6:set_bits	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:19:10:get_bits	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:24:6:set_bits_uint8	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:28:9:get_bits_uint8	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:34:8:get_value_size	9
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:57:6:pack_AddWriteRequest	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:86:6:unpack_AddWriteRequest	2
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:108:6:pack_AddWrite_respond	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:114:6:unpack_AddWrite_respond	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:119:6:pack_ReadRequest	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:135:6:unpack_ReadRequest	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:151:6:pack_ReadResponse	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_register/bit_management.c:160:6:unpack_ReadResponse	1

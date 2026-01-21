@@ -1,0 +1,13 @@
+#ifndef HIL_SENSOR_EMULATOR_H
+#define HIL_SENSOR_EMULATOR_H
+
+#include <stddef.h>
+#include <stdint.h>
+
+void hil_sensor_emulator_init(void);
+void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+
+void hil_mag_request_notify_from_isr(void);
+void hil_fss_request_notify_from_isr(void);
+
+#endif

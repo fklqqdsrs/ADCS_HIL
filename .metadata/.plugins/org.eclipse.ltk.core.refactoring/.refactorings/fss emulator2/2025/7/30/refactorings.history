@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;fss emulator2/fss emulator.ioc&apos; to &apos;fss emulator2.ioc&apos;" description="Rename resource &apos;fss emulator.ioc&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="fss emulator.ioc" name="fss emulator2.ioc" stamp="1753411575098" updateReferences="true"/>
+</session>

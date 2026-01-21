@@ -1,0 +1,5 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/crypto/csp_sha1.c:63:13:csp_sha1_compress	7
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/crypto/csp_sha1.c:130:6:csp_sha1_init	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/crypto/csp_sha1.c:142:6:csp_sha1_process	5
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/crypto/csp_sha1.c:168:6:csp_sha1_done	5
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/crypto/csp_sha1.c:203:6:csp_sha1_memory	1

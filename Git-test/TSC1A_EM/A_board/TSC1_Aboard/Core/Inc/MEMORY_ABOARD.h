@@ -1,0 +1,107 @@
+#ifndef INC_MEMORY_ABOARD_H_
+#define INC_MEMORY_ABOARD_H_
+#include "main.h"
+#include "REG_MAP/newdevice.h"
+#include <stdint.h>
+// rom big data structure
+typedef struct
+{
+ float sen_sat_inertia[6];
+ uint32_t sen_unix_time;
+ float FIX_MEAN_ANAMOLY;
+ float FIX_MEAN_MOTION;
+ float FIX_ARG_PERIGEE;
+ float FIX_RAAN;
+ float FIX_ECCENTRICITY;
+ float FIX_INCLINATION;
+ angle_array_t<1> angle_mag1;
+ angle_array_t<1> angle_mag2;
+ angle_array_t<1> angle_mtq1;
+ angle_array_t<1> angle_mtq2;
+ angle_array_t<1> angle_mtq3;
+ angle_array_t<1> angle_obc_imu1;
+ angle_array_t<1> angle_obc_imu2;
+ angle_array_t<1> angle_rwa1;
+ angle_array_t<1> angle_rwa2;
+ angle_array_t<1> angle_rwa3;
+ angle_array_t<1> angle_rwa4;
+ angle_array_t<1> angle_sun1;
+ angle_array_t<1> angle_sun2;
+ angle_array_t<1> angle_sun3;
+ angle_array_t<1> angle_sun4;
+} rom_bigdata_t;
+
+// ram big data structure
+typedef struct
+{
+ uint8_t sen_nothing;
+ uint32_t TLM_COUNTER;
+ uint8_t ERR_FLG_MAIN;
+ uint8_t mode_acs;
+ uint8_t mode_ads;
+ uint8_t mode_mtq1;
+ uint8_t mode_rwa1;
+ uint8_t mode_uart;
+ uint8_t mode_run;
+ uint32_t SEN_RESET_ROUND;
+ int16_t cmd_mtq1;
+ int16_t cmd_mtq2;
+ int16_t cmd_mtq3;
+ int16_t cmd_rwa1;
+ int16_t cmd_rwa2;
+ int16_t cmd_rwa3;
+ int16_t cmd_rwa4;
+ uint8_t sen_acs;
+ uint8_t sen_ads;
+ int16_t sen_gps_data[6];
+ int16_t sen_gyro1[3];
+ int16_t sen_mag1[3];
+ int16_t sen_mag2[3];
+ int16_t sen_model_igrf[3];
+ int16_t sen_model_posvel_ecef[6];
+ int16_t sen_model_sun[3];
+ int16_t sen_mtq1;
+ int16_t sen_mtq2;
+ int16_t sen_mtq3;
+ int16_t sen_obc_current;
+ int16_t sen_obc_imu1[3];
+ int16_t sen_obc_imu2[3];
+ int16_t sen_obc_mag1[3];
+ int16_t sen_obc_mag2[3];
+ int16_t sen_obc_temp1;
+ uint8_t sen_run;
+ int16_t sen_rwa1;
+ int16_t sen_rwa2;
+ int16_t sen_rwa3;
+ int16_t sen_rwa4;
+ int16_t sen_star_pu[3];
+ int16_t sen_sun1[3];
+ int16_t sen_sun2[3];
+ int16_t sen_sun3[3];
+ int16_t sen_sun4[3];
+ uint8_t sen_uart;
+ float EST_Q_ECEF2B[4];
+ float EST_B_RATES[3];
+ float SEN_NADIR_VEC[3];
+ float SEN_B_RATES[3];
+ float EST_ATT_NED[3];
+ float EST_Q_ORF2B[5];
+ float EST_Q_ERR[4];
+ float EST_T_CMD[3];
+ float EST_Q_ECI2B[4];
+ uint32_t mode_acs_delay_ms;
+ uint32_t mode_ads_delay_ms;
+ uint32_t mode_mtq1_delay_ms;
+ uint32_t mode_run_delay_ms;
+ uint32_t mode_rwa1_delay_ms;
+ uint32_t mode_rwa2_delay_ms;
+ uint32_t mode_rwa3_delay_ms;
+ uint32_t mode_rwa4_delay_ms;
+ uint32_t mode_uart_delay_ms;
+} ram_bigdata_t;
+
+// Declare big data structures
+ram_bigdata_t ram_data;
+rom_bigdata_t rom_data;
+
+#endif //MEMORY_ABOARD

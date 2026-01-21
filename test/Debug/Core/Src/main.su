@@ -1,0 +1,100 @@
+../Core/Inc/General.h:18:6:void LoopDelay(uint16_t)	24	static
+../Core/Inc/General.h:24:6:void BigEndian2bytesCpy(uint8_t*, uint16_t)	16	static
+../Core/Inc/General.h:34:6:void BigEndian4bytesCpy(uint8_t*, uint32_t)	16	static
+../Core/Inc/General.h:44:6:void BigEndian8bytesCpy(uint8_t*, uint64_t)	40	static
+../Core/Inc/General.h:63:6:void BigEndianCpy(uint8_t*, uint16_t, uint8_t*)	32	static
+../Core/Inc/General.h:72:6:void LittleEndianCpy(uint8_t*, uint16_t, uint8_t*)	32	static
+../Core/Inc/newPort.h:22:5:newPort::newPort(uint8_t)	16	static
+../Core/Inc/newPort.h:37:10:void newPort::mode(uint8_t)	16	static
+../Core/Inc/newPort.h:41:10:void newPort::set_timeout(uint32_t)	16	static
+../Core/Inc/newPort.h:45:14:uint32_t newPort::get_timeout()	16	static
+../Core/Inc/newPort.h:49:18:virtual void newPort::init(void*)	16	static
+../Core/Inc/newPort.h:53:18:virtual void newPort::suspend(void*)	16	static
+../Core/Inc/newPort.h:57:18:virtual void newPort::resume(void*)	16	static
+../Core/Inc/newPort.h:61:21:virtual uint8_t newPort::readBytes(void*)	16	static
+../Core/Inc/newPort.h:65:21:virtual uint8_t newPort::writeBytes(void*)	16	static
+../Core/Inc/newPort.h:69:21:virtual uint8_t newPort::readMEMs(uint8_t, uint8_t, uint8_t*, uint8_t)	24	static
+../Core/Inc/newPort.h:73:21:virtual uint8_t newPort::writeMEMs(uint8_t, uint8_t, uint8_t*, uint8_t)	24	static
+../Core/Inc/newPortCAN.h:32:5:newPortCAN::newPortCAN(CAN_HandleTypeDef*, uint8_t, uint32_t)	24	static
+../Core/Inc/newPortCAN.h:44:10:void newPortCAN::set_rxtx_head(CAN_RxHeaderTypeDef*, CAN_TxHeaderTypeDef*)	24	static
+../Core/Inc/newPortCAN.h:64:13:uint8_t newPortCAN::set_filter(uint32_t)	16	static
+../Core/Inc/newPortCAN.h:93:13:uint8_t newPortCAN::writeBytes(CAN_TxHeaderTypeDef*, uint8_t*, uint32_t*)	24	static
+../Core/Inc/KMUTNB_ADCS_REG.h:89:7:void KMUTNB_ADCS_REG::init(uint8_t*, uint8_t, uint8_t)	24	static
+../Core/Inc/KMUTNB_ADCS_REG.h:155:7:void KMUTNB_ADCS_REG::set_update_flag(uint8_t)	16	static
+../Core/Inc/WHL500_REG.h:320:7:void WHLREG::whl500_reg_setup()	16	static
+../Core/Inc/WHL500.h:135:2:WHL500::WHL500(newPortCAN*, WHLREG*, uint8_t)	24	static
+../Core/Inc/WHL500.h:143:7:void WHL500::SetDeviceIDfilter(uint8_t)	16	static
+../Core/Inc/WHL500.h:148:7:void WHL500::RegSetup()	16	static
+../Core/Inc/WHL500.h:158:23:CAN_TxHeaderTypeDef* WHL500::getCANTxHeader()	16	static
+../Core/Inc/WHL500.h:163:23:CAN_RxHeaderTypeDef* WHL500::getCANRxHeader()	16	static
+../Core/Inc/WHL500.h:168:7:void WHL500::VEOWARETxMessage(uint8_t*, uint8_t, uint16_t)	40	static
+../Core/Inc/WHL500.h:245:7:void WHL500::SetMessageParam(uint8_t, uint8_t, uint8_t, uint8_t, uint16_t)	16	static
+../Core/Inc/WHL500.h:288:7:void WHL500::ShortSetPayload(uint8_t, uint16_t)	16	static
+../Core/Inc/WHL500.h:315:11:uint32_t WHL500::CANIdEncode(CANExtId_Typedef*)	24	static
+../Core/Inc/WHL500.h:337:11:uint32_t WHL500::MessageHeaderEncode(uint8_t, uint8_t, uint8_t, uint8_t, uint8_t, uint8_t)	24	static
+../Core/Inc/WHL500.h:353:11:uint32_t WHL500::MessageHeaderEncode(Message_HeaderTypeDef*)	24	static
+../Core/Inc/WHL500.h:370:7:void WHL500::MessageHeaderDecode(uint32_t)	24	static
+../Core/Inc/WHL500.h:418:7:void WHL500::SendCommand(uint8_t, uint16_t, uint8_t, float)	56	static
+../Core/Inc/WHL500.h:613:7:void WHL500::ClearTxBuffer()	16	static
+../Core/Inc/WHL500.h:666:11:uint32_t WHL500::Castagnoli_CRC32c(uint8_t*, uint8_t)	40	static
+../Core/Inc/KMUTNB_ADCS_REG.h:75:7:KMUTNB_ADCS_REG::KMUTNB_ADCS_REG()	16	static
+../Core/Inc/KVH1750_REG.h:29:6:void kvh1750_reg_setup()	8	static
+../Core/Inc/kmCAN.h:61:2:kmCAN::kmCAN(newPortCAN*, uint8_t)	24	static
+../Core/Inc/kmCAN.h:101:16:CAN_RxHeaderTypeDef* kmCAN::get_rx_head()	16	static
+../Core/Inc/CubeMag_REG.h:60:6:void cubemag_reg_setup()	8	static
+../Core/Inc/CUBEMAG.h:30:2:CUBEMAG::CUBEMAG(kmCAN*)	16	static
+../Core/Inc/OEM719_REG.h:37:6:void oem719_reg_setup()	8	static
+../Core/Inc/newuart.h:25:2:NEWUART::NEWUART(UART_HandleTypeDef*, uint32_t, uint32_t, uint8_t)	24	static
+../Core/Inc/newuart.h:39:7:void NEWUART::begin(uint32_t)	16	static
+../Core/Inc/newuart.h:80:10:uint8_t NEWUART::writeBytes(uint8_t*, uint8_t, uint8_t)	24	static
+../Core/Inc/newuart.h:89:7:void NEWUART::print(const char*, uint8_t)	64	dynamic
+../Core/Inc/newuart.h:119:7:void NEWUART::println(const char*)	16	static
+../Core/Inc/OEM719.h:135:2:OEM719::OEM719(newPortCAN*, uint8_t, uint8_t)	24	static
+../Core/Inc/I2C/newPortI2C.h:30:5:newPortI2C::newPortI2C(I2C_HandleTypeDef*, uint8_t)	24	static
+../Core/Inc/I2C/newPortI2C.h:51:13:uint8_t newPortI2C::readMEMs(uint8_t, uint16_t, uint8_t*, uint8_t)	56	static
+../Core/Inc/I2C/newPortI2C.h:55:13:uint8_t newPortI2C::writeMEMs(uint8_t, uint16_t, uint8_t*, uint8_t)	56	static
+../Core/Inc/newDevice.h:17:5:newDevice::newDevice(newPort*, uint16_t, uint8_t)	24	static
+../Core/Inc/newDevice.h:23:14:newPort* newDevice::getPort()	16	static
+../Core/Inc/newDevice.h:25:14:uint16_t newDevice::addr()	16	static
+../Core/Inc/newDevice.h:29:21:virtual uint8_t newDevice::begin()	16	static
+../Core/Inc/newDevice.h:30:18:virtual void newDevice::read()	16	static
+../Core/Inc/newDevice.h:31:18:virtual void newDevice::write()	16	static
+../Core/Inc/newDevice.h:34:21:virtual uint8_t newDevice::readMEMs(uint16_t, uint8_t*, uint8_t)	40	static
+../Core/Inc/newDevice.h:39:21:virtual uint8_t newDevice::writeMEMs(uint16_t, uint8_t*, uint8_t)	40	static
+../Core/Inc/INA219/newINA.h:182:5:newINA::newINA(newPortI2C*, uint8_t)	24	static
+../Core/Inc/INA219/newINA.h:198:13:uint8_t newINA::get_success()	16	static
+../Core/Inc/INA219/newINA.h:200:13:virtual uint8_t newINA::readMEMs(uint16_t, uint8_t*, uint8_t)	40	static
+../Core/Inc/INA219/newINA.h:204:13:virtual uint8_t newINA::writeMEMs(uint16_t, uint8_t*, uint8_t)	40	static
+../Core/Inc/INA219/newINA.h:222:13:uint8_t newINA::begin(uint8_t)	16	static
+../Core/Inc/INA219/newINA.h:287:10:void newINA::newCalibration(current_info_t*)	32	static
+../Core/Inc/INA219/newINA.h:411:13:int16_t newINA::getCurrent_raw()	32	static
+../Core/Inc/INA219/newINA.h:466:21:current_info_t* newINA::get_info()	16	static
+../Core/Inc/INA219/newINA.h:480:10:void newINA::swapDataByte(uint8_t*)	24	static
+../Core/Inc/newpwm.h:19:5:NEWPWM::NEWPWM(TIM_HandleTypeDef*, uint32_t, uint32_t)	24	static
+../Core/Inc/newpwm.h:37:14:uint32_t NEWPWM::get_period()	16	static
+../Core/Inc/newpwm.h:45:14:uint32_t NEWPWM::get_prescaler()	16	static
+../Core/Inc/newpwm.h:57:13:uint8_t NEWPWM::init(uint8_t)	16	static
+../Core/Inc/newpwm.h:69:13:uint8_t NEWPWM::reinit(uint32_t, uint32_t)	24	static
+../Core/Inc/newpwm.h:75:13:uint8_t NEWPWM::deinit()	16	static
+../Core/Inc/newpwm.h:80:13:uint8_t NEWPWM::set_info(uint32_t, uint32_t)	24	static
+../Core/Inc/newpwm.h:88:10:void NEWPWM::run_ch_pwm(uint32_t, uint32_t)	24	static
+../Core/Inc/STSPIN/MTQdriver.h:57:5:MTQDRIVER::MTQDRIVER(mtq_driver_info_t*, int32_t)	24	static
+../Core/Inc/STSPIN/MTQdriver.h:64:10:void MTQDRIVER::set_info(mtq_driver_info_t*)	16	static
+../Core/Inc/STSPIN/MTQdriver.h:72:10:void MTQDRIVER::begin()	24	static
+../Core/Inc/STSPIN/MTQdriver.h:81:10:void MTQDRIVER::set_pwm_timer(uint32_t, uint32_t)	24	static
+../Core/Inc/STSPIN/MTQdriver.h:86:10:void MTQDRIVER::run_current_pwm(int32_t, uint32_t)	24	static
+../Core/Inc/STSPIN/newMTQ.h:26:5:NEWMTQ::NEWMTQ(MTQDRIVER*, newINA*, mtq_profile_t*)	24	static
+../Core/Inc/STSPIN/newMTQ.h:58:10:void NEWMTQ::run_raw_pwm(int16_t, uint32_t)	24	static
+../Core/Inc/STSPIN/newMTQ.h:67:11:float NEWMTQ::read_mA()	24	static
+../Core/Inc/STSPIN/newMTQ.h:71:13:int16_t NEWMTQ::read_raw()	16	static
+../Core/Inc/WHL500_REG.h:167:7:WHLREG::WHLREG()	24	static
+../Core/Src/main.cpp:147:6:void show_currentMTQ(NEWMTQ*, int16_t*)	16	static
+../Core/Src/main.cpp:190:5:int main()	96	static
+../Core/Src/main.cpp:423:6:void SystemClock_Config()	88	static
+../Core/Src/main.cpp:467:6:void CAN_Transmit(uint8_t*, uint16_t)	24	static
+../Core/Src/main.cpp:503:6:void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef*)	24	static
+../Core/Src/main.cpp:570:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	16	static,ignoring_inline_asm
+../Core/Src/main.cpp:586:6:void IMUData()	8	static
+../Core/Src/main.cpp:607:6:void Error_Handler()	4	static,ignoring_inline_asm
+../Core/Src/main.cpp:616:1:void __static_initialization_and_destruction_0()	24	static
+../Core/Src/main.cpp:616:1:cpp)	8	static

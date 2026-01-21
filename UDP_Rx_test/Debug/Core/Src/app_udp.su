@@ -1,0 +1,3 @@
+../Core/Src/app_udp.c:25:13:udp_rx_cb	32	static
+../Core/Src/app_udp.c:41:6:UDP_Server_Init	16	static
+../Core/Src/app_udp.c:60:6:UDP_Server_Pop	32	static

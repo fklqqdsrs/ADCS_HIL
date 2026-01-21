@@ -1,0 +1,5 @@
+C:/Users/megus/Desktop/NARIT_WORKSPACE/TSC1A_EM/A_board/TSC1_Aboard/build/Debug/CMakeFiles/TSC1_Aboard.dir
+C:/Users/megus/Desktop/NARIT_WORKSPACE/TSC1A_EM/A_board/TSC1_Aboard/build/Debug/CMakeFiles/edit_cache.dir
+C:/Users/megus/Desktop/NARIT_WORKSPACE/TSC1A_EM/A_board/TSC1_Aboard/build/Debug/CMakeFiles/rebuild_cache.dir
+C:/Users/megus/Desktop/NARIT_WORKSPACE/TSC1A_EM/A_board/TSC1_Aboard/build/Debug/cmake/stm32cubemx/CMakeFiles/edit_cache.dir
+C:/Users/megus/Desktop/NARIT_WORKSPACE/TSC1A_EM/A_board/TSC1_Aboard/build/Debug/cmake/stm32cubemx/CMakeFiles/rebuild_cache.dir

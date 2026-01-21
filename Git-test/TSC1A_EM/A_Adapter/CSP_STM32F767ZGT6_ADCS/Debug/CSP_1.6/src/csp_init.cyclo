@@ -1,0 +1,5 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/include/csp/csp_rtable.h:149:19:csp_route_set	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_init.c:31:9:csp_get_address	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_init.c:36:5:csp_init	5
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_init.c:80:6:csp_free_resources	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_init.c:89:20:csp_get_conf	1

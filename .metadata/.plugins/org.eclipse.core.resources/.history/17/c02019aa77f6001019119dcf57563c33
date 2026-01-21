@@ -1,0 +1,70 @@
+/*
+ * gnss_protocal.h
+ *
+ *  Created on: Jan 20, 2026
+ *      Author: Chinnapop
+ */
+
+#ifndef INC_GNSS_PROTOCAL_H_
+#define INC_GNSS_PROTOCAL_H_
+
+
+#include "main.h"
+
+#define UNIX_GPS_EPOCH_OFFSET 315964800LL
+#define SECONDS_IN_WEEK 604800LL
+
+typedef struct __attribute__((packed)){
+	uint8_t  sync[3];
+	uint8_t  header_length;
+	uint16_t msg_id;
+	uint8_t  msg_type;
+	uint8_t  port_addr;
+	uint16_t msg_length;
+	uint16_t seq;
+	uint8_t idle_time;
+	uint8_t time_stat;
+	uint16_t week;
+	uint32_t msec;
+	uint32_t receiver_stat;
+	uint16_t reserved;
+	uint16_t receiver_version;
+
+}binary_header_format_t;
+
+typedef struct __attribute__((packed)){
+	uint32_t  psol_stat;
+	uint32_t  pos_type;
+	double    pos[3];
+	double    pos_sd[3];
+	uint32_t  vsol_stat;
+	uint32_t  vel_type;
+	double    vel[3];
+	double    vel_sd[3];
+	char      stn_id[4];
+	float     v_latcency;
+	float     diff_age;
+	float     sol_age;
+	uint8_t   num_sat_track;
+	uint8_t   num_sat_sol;
+	uint8_t   num_sat_l1;
+	uint8_t   num_sat_multi_freq;
+	uint8_t   reserved;
+	uint8_t   ext_sol_stat;
+	uint8_t   galileo_beidou;
+	uint8_t   gps_glonass;
+	uint32_t  crc;
+
+}bestXYZ_payload_format_t;
+
+typedef struct __attribute__((packed)){
+	binary_header_format_t header;
+	bestXYZ_payload_format_t ecef;
+
+}bestXYZ_format_t;
+
+uint8_t unix_to_gps(uint32_t unix,uint8_t leap_sec,uint16_t *week,uint32_t *msec);
+uint8_t msg_default_congfig(bestXYZ_format_t *msg);
+
+
+#endif /* INC_GNSS_PROTOCAL_H_ */

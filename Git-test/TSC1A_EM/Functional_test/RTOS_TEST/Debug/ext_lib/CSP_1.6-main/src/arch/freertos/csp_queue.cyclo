@@ -1,0 +1,8 @@
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:26:20:csp_queue_create	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:30:6:csp_queue_remove	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:34:5:csp_queue_enqueue	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:40:5:csp_queue_enqueue_isr	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:44:5:csp_queue_dequeue	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:50:5:csp_queue_dequeue_isr	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:54:5:csp_queue_size	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/arch/freertos/csp_queue.c:58:5:csp_queue_size_isr	1

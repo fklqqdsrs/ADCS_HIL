@@ -1,0 +1,2 @@
+../Core/Src/udp_echoserver.c:58:13:udpecho_thread	24	static
+../Core/Src/udp_echoserver.c:93:6:udpecho_init	16	static
