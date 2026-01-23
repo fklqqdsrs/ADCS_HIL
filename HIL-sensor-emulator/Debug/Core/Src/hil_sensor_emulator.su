@@ -8,5 +8,5 @@
 ../Core/Src/hil_sensor_emulator.c:409:6:hil_fss_request_notify_from_isr	16	static,ignoring_inline_asm
 ../Core/Src/hil_sensor_emulator.c:434:6:HAL_CAN_RxFifo0MsgPendingCallback	56	static
 ../Core/Src/hil_sensor_emulator.c:464:6:HAL_UART_RxCpltCallback	24	static,ignoring_inline_asm
-../Core/Src/hil_sensor_emulator.c:635:13:hil_fss_task	48	static
-../Core/Src/hil_sensor_emulator.c:655:13:hil_fss_tx_rs485	16	static
+../Core/Src/hil_sensor_emulator.c:636:13:hil_fss_task	48	static
+../Core/Src/hil_sensor_emulator.c:656:13:hil_fss_tx_rs485	16	static

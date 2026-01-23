@@ -116,7 +116,7 @@ int main(void)
   CAN_Filter(&hcan1);
   HAL_CAN_Start(&hcan1);
   HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
-
+  HAL_UART_Receive_IT(&huart2, &hil_fss_uart_rx_byte, HIL_FSS_UART_RX_CHUNK);
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

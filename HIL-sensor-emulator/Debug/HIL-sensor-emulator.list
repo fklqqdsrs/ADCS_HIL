@@ -1426,6 +1426,7 @@ void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
  8000c02:	b084      	sub	sp, #16
  8000c04:	af00      	add	r7, sp, #0
  8000c06:	6078      	str	r0, [r7, #4]
+
 #if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
   if (huart == &huart2)
  8000c08:	687b      	ldr	r3, [r7, #4]
@@ -1788,6 +1789,7 @@ int main(void)
  8000de8:	2102      	movs	r1, #2
  8000dea:	4804      	ldr	r0, [pc, #16]	@ (8000dfc <main+0x4c>)
  8000dec:	f001 f964 	bl	80020b8 <HAL_CAN_ActivateNotification>
+
   /* USER CODE END 2 */
 
   /* Call init function for freertos objects (in cmsis_os2.c) */

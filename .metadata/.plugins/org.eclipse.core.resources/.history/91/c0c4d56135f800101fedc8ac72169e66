@@ -463,7 +463,6 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
-
 #if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
   if (huart == &huart2)
   {
