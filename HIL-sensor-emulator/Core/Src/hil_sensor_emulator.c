@@ -4,6 +4,9 @@
 
 #include "FreeRTOS.h"
 #include "task.h"
+#include "queue.h"
+#include "stream_buffer.h"
+#include "can.h"
 #include "usart.h"
 #include <string.h>
 #include "imu_protocal.h"
@@ -29,6 +32,10 @@
 #define HIL_MAG_TASK_PRIO (tskIDLE_PRIORITY + 3)
 #define HIL_FSS_TASK_PRIO (tskIDLE_PRIORITY + 3)
 
+#define HIL_MAG_REQUEST_QUEUE_LEN 8U
+#define HIL_FSS_STREAM_BUFFER_BYTES 128U
+#define HIL_FSS_UART_RX_CHUNK 1U
+
 //extern UART_HandleTypeDef huart3;
 
 
@@ -51,6 +58,25 @@ static TaskHandle_t hil_gnss_task_handle = NULL;
 static TaskHandle_t hil_mag_task_handle = NULL;
 static TaskHandle_t hil_fss_task_handle = NULL;
 
+#if (HIL_ROLE == HIL_ROLE_MAG)
+typedef struct
+{
+  CAN_RxHeaderTypeDef header;
+  uint8_t data[8];
+} HilMagCanRequest;
+
+static StaticQueue_t hil_mag_queue_tcb;
+static uint8_t hil_mag_queue_storage[HIL_MAG_REQUEST_QUEUE_LEN * sizeof(HilMagCanRequest)];
+static QueueHandle_t hil_mag_queue = NULL;
+#endif
+
+#if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
+static StaticStreamBuffer_t hil_fss_stream_tcb;
+static uint8_t hil_fss_stream_storage[HIL_FSS_STREAM_BUFFER_BYTES];
+static StreamBufferHandle_t hil_fss_stream = NULL;
+static uint8_t hil_fss_uart_rx_byte = 0U;
+#endif
+
 #if (HIL_ROLE == HIL_ROLE_IMU)
 static StaticTask_t hil_imu_task_tcb;
 static StackType_t hil_imu_task_stack[HIL_IMU_TASK_STACK_WORDS];
@@ -62,11 +88,14 @@ static message_format_t msg;
 static StaticTask_t hil_gnss_task_tcb;
 static StackType_t hil_gnss_task_stack[HIL_GNSS_TASK_STACK_WORDS];
 static bestXYZ_format_t ecef_msg;
+static CAN_TxHeaderTypeDef TxHeader;
 #endif
 
 #if (HIL_ROLE == HIL_ROLE_MAG)
 static StaticTask_t hil_mag_task_tcb;
 static StackType_t hil_mag_task_stack[HIL_MAG_TASK_STACK_WORDS];
+static CAN_TxHeaderTypeDef mtmTxHeader;
+static uint8_t mtm_payload[15];
 #endif
 
 #if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
@@ -301,6 +330,21 @@ void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len)
 
 void hil_sensor_emulator_init(void)
 {
+#if (HIL_ROLE == HIL_ROLE_MAG)
+  hil_mag_queue = xQueueCreateStatic(HIL_MAG_REQUEST_QUEUE_LEN,
+                                     sizeof(HilMagCanRequest),
+                                     hil_mag_queue_storage,
+                                     &hil_mag_queue_tcb);
+#endif
+
+#if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
+  hil_fss_stream = xStreamBufferCreateStatic(HIL_FSS_STREAM_BUFFER_BYTES,
+                                             HIL_FSS_UART_RX_CHUNK,
+                                             hil_fss_stream_storage,
+                                             &hil_fss_stream_tcb);
+  (void)HAL_UART_Receive_IT(&huart2, &hil_fss_uart_rx_byte, HIL_FSS_UART_RX_CHUNK);
+#endif
+
 #if (HIL_ROLE == HIL_ROLE_IMU)
   hil_imu_task_handle = xTaskCreateStatic(hil_imu_task,
                                           "hil_imu",
@@ -342,6 +386,16 @@ void hil_sensor_emulator_init(void)
 
 void hil_mag_request_notify_from_isr(void)
 {
+#if (HIL_ROLE == HIL_ROLE_MAG)
+  BaseType_t higher_woken = pdFALSE;
+  HilMagCanRequest request = {0};
+
+  if (hil_mag_queue != NULL)
+  {
+    (void)xQueueSendFromISR(hil_mag_queue, &request, &higher_woken);
+    portYIELD_FROM_ISR(higher_woken);
+  }
+#else
   BaseType_t higher_woken = pdFALSE;
 
   if (hil_mag_task_handle != NULL)
@@ -349,10 +403,24 @@ void hil_mag_request_notify_from_isr(void)
     vTaskNotifyGiveFromISR(hil_mag_task_handle, &higher_woken);
     portYIELD_FROM_ISR(higher_woken);
   }
+#endif
 }
 
 void hil_fss_request_notify_from_isr(void)
 {
+#if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
+  BaseType_t higher_woken = pdFALSE;
+  uint8_t request = 0U;
+
+  if (hil_fss_stream != NULL)
+  {
+    (void)xStreamBufferSendFromISR(hil_fss_stream,
+                                   &request,
+                                   sizeof(request),
+                                   &higher_woken);
+    portYIELD_FROM_ISR(higher_woken);
+  }
+#else
   BaseType_t higher_woken = pdFALSE;
 
   if (hil_fss_task_handle != NULL)
@@ -360,6 +428,59 @@ void hil_fss_request_notify_from_isr(void)
     vTaskNotifyGiveFromISR(hil_fss_task_handle, &higher_woken);
     portYIELD_FROM_ISR(higher_woken);
   }
+#endif
+}
+
+void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
+{
+  CAN_RxHeaderTypeDef rx_header;
+  uint8_t rx_data[8];
+
+  if (hcan != &hcan1)
+  {
+    return;
+  }
+
+  if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &rx_header, rx_data) == HAL_OK)
+  {
+#if (HIL_ROLE == HIL_ROLE_MAG)
+    HilMagCanRequest request;
+    BaseType_t higher_woken = pdFALSE;
+
+    request.header = rx_header;
+    memcpy(request.data, rx_data, sizeof(request.data));
+    if (hil_mag_queue != NULL)
+    {
+      (void)xQueueSendFromISR(hil_mag_queue, &request, &higher_woken);
+    }
+    portYIELD_FROM_ISR(higher_woken);
+#else
+    (void)rx_header;
+    (void)rx_data;
+#endif
+  }
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+#if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
+  if (huart == &huart2)
+  {
+    BaseType_t higher_woken = pdFALSE;
+
+    if (hil_fss_stream != NULL)
+    {
+      (void)xStreamBufferSendFromISR(hil_fss_stream,
+                                     &hil_fss_uart_rx_byte,
+                                     HIL_FSS_UART_RX_CHUNK,
+                                     &higher_woken);
+    }
+    portYIELD_FROM_ISR(higher_woken);
+    (void)HAL_UART_Receive_IT(&huart2, &hil_fss_uart_rx_byte, HIL_FSS_UART_RX_CHUNK);
+  }
+#else
+  (void)huart;
+#endif
 }
 
 #if (HIL_ROLE == HIL_ROLE_IMU)
@@ -443,7 +564,17 @@ static void hil_gnss_tx_can(const double ecef_pos[3], const double ecef_vel[3], 
   ecef_msg.ecef.vel[1] = ecef_vel[1];
   ecef_msg.ecef.vel[2] = ecef_vel[2];
 
-  HAL_UART_Transmit(&huart3, (uint8_t*)&ecef_msg, sizeof(ecef_msg), 1000);
+
+
+
+  TxHeader.ExtId = 0x1c06111c;
+  TxHeader.RTR = CAN_RTR_DATA;
+  TxHeader.IDE = CAN_ID_EXT;
+  TxHeader.DLC = 8;
+
+//  HAL_UART_Transmit(&huart3, (uint8_t*)&ecef_msg, sizeof(ecef_msg), 1000);
+//  CAN_Send_Multi_Bytes(&hcan1, &TxHeader,(uint8_t*)&ecef_msg, sizeof(ecef_msg));
+  can_tx_multiframe(&hcan1, &TxHeader, (uint8_t*)&ecef_msg, sizeof(ecef_msg),10);
 
 }
 #endif
@@ -452,20 +583,51 @@ static void hil_gnss_tx_can(const double ecef_pos[3], const double ecef_vel[3], 
 static void hil_mag_task(void *arg)
 {
   double mag[3] = {0.0, 0.0, 0.0};
+  HilMagCanRequest request;
 
   (void)arg;
 
   for (;;)
   {
-    (void)ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-    hil_cache_read_mag(mag);
-    hil_mag_tx_can(mag);
+    if (xQueueReceive(hil_mag_queue, &request, portMAX_DELAY) == pdTRUE)
+    {
+    	if((request.header.ExtId == 0x4C50134) && (request.header.DLC == 0)){
+		  hil_cache_read_mag(mag);
+		  hil_mag_tx_can(mag);
+    	}
+    }
   }
 }
 
 static void hil_mag_tx_can(const double mag[3])
 {
   (void)mag;
+
+  uint8_t buffer[12];
+  float mag_sensor[3];
+
+  mag_sensor[0] = (float)mag[0];
+  mag_sensor[1] = (float)mag[1];
+  mag_sensor[2] = (float)mag[2];
+
+  memcpy(buffer,mag_sensor,sizeof(mag_sensor));
+  memcpy(mtm_payload,buffer,7);
+
+  mtm_payload[7] = 1;
+  mtm_payload[13] = 1;
+  mtm_payload[8] = buffer[7];
+
+  memcpy(mtm_payload+9,buffer+8,sizeof(float));
+
+
+  mtmTxHeader.ExtId = 0x8c53401;
+  mtmTxHeader.RTR = CAN_RTR_DATA;
+  mtmTxHeader.IDE = CAN_ID_EXT;
+  mtmTxHeader.DLC = 8;
+
+  can_tx_multiframe(&hcan1, &mtmTxHeader, (uint8_t*)mtm_payload, sizeof(mtm_payload),5);
+
+
 }
 #endif
 
@@ -473,14 +635,20 @@ static void hil_mag_tx_can(const double mag[3])
 static void hil_fss_task(void *arg)
 {
   double sun_vec[3] = {0.0, 0.0, 0.0};
+  uint8_t rx_byte = 0U;
 
   (void)arg;
 
   for (;;)
   {
-    (void)ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-    hil_cache_read_fss(sun_vec);
-    hil_fss_tx_rs485(sun_vec);
+    if (xStreamBufferReceive(hil_fss_stream,
+                             &rx_byte,
+                             sizeof(rx_byte),
+                             portMAX_DELAY) > 0U)
+    {
+      hil_cache_read_fss(sun_vec);
+      hil_fss_tx_rs485(sun_vec);
+    }
   }
 }
 

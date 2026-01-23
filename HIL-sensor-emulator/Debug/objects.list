@@ -1,6 +1,7 @@
 "./Core/Src/can.o"
 "./Core/Src/dma.o"
 "./Core/Src/freertos.o"
+"./Core/Src/fss_protocal.o"
 "./Core/Src/gnss_protocal.o"
 "./Core/Src/gpio.o"
 "./Core/Src/hil_sensor_emulator.o"

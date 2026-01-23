@@ -112,7 +112,6 @@ int main(void)
   MX_USART3_UART_Init();
   MX_USART2_UART_Init();
   MX_CAN1_Init();
-
   /* USER CODE BEGIN 2 */
   CAN_Filter(&hcan1);
   HAL_CAN_Start(&hcan1);
@@ -202,13 +201,6 @@ int __io_putchar(int ch)
 }
 
 
-void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
-{
-
-
-
-
-}
 /* USER CODE END 4 */
 
  /* MPU Configuration */

@@ -1,5 +1,5 @@
 ../Core/Src/can.c:30:6:MX_CAN1_Init	8	static
 ../Core/Src/can.c:62:6:HAL_CAN_MspInit	48	static
 ../Core/Src/can.c:99:6:HAL_CAN_MspDeInit	16	static
-../Core/Src/can.c:128:19:CAN_Send_Multi_Bytes	40	static
-../Core/Src/can.c:155:6:CAN_Filter	56	static
+../Core/Src/can.c:127:19:can_tx_multiframe	72	static
+../Core/Src/can.c:178:6:CAN_Filter	56	static

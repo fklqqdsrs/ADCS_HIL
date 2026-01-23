@@ -32,3 +32,6 @@ payload
 rx_buffer
 g_hil_cache
 gyro[0]
+ecef_pos
+ecef_msg
+TxHeader

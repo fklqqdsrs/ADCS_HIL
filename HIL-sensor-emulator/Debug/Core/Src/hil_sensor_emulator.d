@@ -9,7 +9,10 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
  ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h \
- ../Core/Inc/usart.h ../Core/Inc/main.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h \
+ ../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h \
+ ../Core/Inc/can.h ../Core/Inc/main.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h \
  ../Core/Inc/stm32f7xx_hal_conf.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h \
@@ -42,7 +45,8 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
- ../Core/Inc/imu_protocal.h ../Core/Inc/gnss_protocal.h
+ ../Core/Inc/usart.h ../Core/Inc/imu_protocal.h \
+ ../Core/Inc/gnss_protocal.h
 ../Core/Inc/hil_sensor_emulator.h:
 ../Core/Inc/hil_config.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -54,7 +58,10 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
 ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/list.h:
-../Core/Inc/usart.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/task.h:
+../Middlewares/Third_Party/FreeRTOS/Source/include/stream_buffer.h:
+../Core/Inc/can.h:
 ../Core/Inc/main.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:
 ../Core/Inc/stm32f7xx_hal_conf.h:
@@ -88,5 +95,6 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_tim_ex.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h:
 ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h:
+../Core/Inc/usart.h:
 ../Core/Inc/imu_protocal.h:
 ../Core/Inc/gnss_protocal.h:

@@ -1,10 +1,10 @@
-14:03:42 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+11:58:28 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
 make -j16 all 
 arm-none-eabi-size  HIL-sensor-emulator.elf 
    text	   data	    bss	    dec	    hex	filename
- 116852	    460	  52632	 169944	  297d8	HIL-sensor-emulator.elf
+ 120576	    460	  52656	 173692	  2a67c	HIL-sensor-emulator.elf
 Finished building: default.size.stdout
  
 
-14:03:43 Build Finished. 0 errors, 0 warnings. (took 723ms)
+11:58:29 Build Finished. 0 errors, 0 warnings. (took 621ms)
 

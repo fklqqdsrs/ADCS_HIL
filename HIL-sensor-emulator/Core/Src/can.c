@@ -124,29 +124,52 @@ void HAL_CAN_MspDeInit(CAN_HandleTypeDef* canHandle)
 }
 
 /* USER CODE BEGIN 1 */
-
-HAL_StatusTypeDef CAN_Send_Multi_Bytes(CAN_HandleTypeDef *hcan, CAN_TxHeaderTypeDef *TxHeader, uint8_t *pData, uint16_t len)
+HAL_StatusTypeDef can_tx_multiframe(CAN_HandleTypeDef *hcan,
+                                   const CAN_TxHeaderTypeDef *txheader_in,
+                                   const uint8_t *data,
+                                   uint16_t length,
+                                   uint32_t timeout_ms)
 {
-	uint32_t TxMailbox;
-	uint16_t sentBytes = 0;
+    if (hcan == NULL || txheader_in == NULL) return HAL_ERROR;
+    if (length > 0U && data == NULL) return HAL_ERROR;
 
-    while (sentBytes < len) {
-        // Calculate how many bytes to send in this frame (max 8)
-        uint8_t currentChunk = (len - sentBytes >= 8) ? 8 : (len - sentBytes);
-        TxHeader->DLC = currentChunk;
+    uint32_t mailbox;
+    uint16_t offset = 0;
 
-        // Check if a mailbox is available before requesting transmission
-      //  while (HAL_CAN_GetTxMailboxesFreeLevel(hcan) == 0);
-        for(int i=0; i<5000; i++)
-        // Request Transmission
-        if (HAL_CAN_AddTxMessage(hcan, TxHeader, &pData[sentBytes], &TxMailbox) != HAL_OK) {
-            return HAL_ERROR;
-        }
+    while (offset < length)
+    {
+        uint8_t chunk = (length - offset > 8U) ? 8U : (uint8_t)(length - offset);
+   //     uint32_t start = HAL_GetTick();
 
-        sentBytes += currentChunk;
+        // make a local copy so we can change DLC safely
+        CAN_TxHeaderTypeDef hdr = *txheader_in;
+        hdr.DLC = chunk;
+
+        // wait for a free mailbox
+//        while (HAL_CAN_GetTxMailboxesFreeLevel(hcan) == 0U)
+//        {
+//            if ((timeout_ms != 0U) && ((HAL_GetTick() - start) >= timeout_ms)) return HAL_TIMEOUT;
+//        }
+//        HAL_StatusTypeDef st;
+//        do
+
+//        {
+       for(int i = 0; i<4000; i++){};
+             HAL_CAN_AddTxMessage(hcan, &hdr, (uint8_t *)(data + offset), &mailbox);
+//            if ((st == HAL_BUSY) && (timeout_ms != 0U) && ((HAL_GetTick() - start) >= timeout_ms))
+//            {
+//                return HAL_TIMEOUT;
+//            }
+//        } while (st == HAL_BUSY);
+//
+//       if (st != HAL_OK) return st;
+
+        offset += chunk;
     }
+
     return HAL_OK;
 }
+
 
 /**
  * @brief Configures the CAN filter to accept ALL incoming messages.

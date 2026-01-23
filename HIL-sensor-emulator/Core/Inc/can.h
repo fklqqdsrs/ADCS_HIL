@@ -41,8 +41,13 @@ extern CAN_HandleTypeDef hcan1;
 void MX_CAN1_Init(void);
 
 /* USER CODE BEGIN Prototypes */
-HAL_StatusTypeDef CAN_Send_Multi_Bytes(CAN_HandleTypeDef *hcan, CAN_TxHeaderTypeDef *tx_head, uint8_t *pData, uint16_t len);
+//HAL_StatusTypeDef CAN_Send_Multi_Bytes(CAN_HandleTypeDef *hcan, CAN_TxHeaderTypeDef *tx_head, uint8_t *pData, uint16_t len);
 void CAN_Filter(CAN_HandleTypeDef *hcan);
+HAL_StatusTypeDef can_tx_multiframe(CAN_HandleTypeDef *hcan,
+                                   const CAN_TxHeaderTypeDef *txheader_in,
+                                   const uint8_t *data,
+                                   uint16_t length,
+                                   uint32_t timeout_ms);
 
 /* USER CODE END Prototypes */
 
