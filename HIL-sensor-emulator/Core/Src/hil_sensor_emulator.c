@@ -11,6 +11,7 @@
 #include <string.h>
 #include "imu_protocal.h"
 #include "gnss_protocal.h"
+#include "fss_protocal.h"
 #if (HIL_ROLE < HIL_ROLE_IMU) || (HIL_ROLE > HIL_ROLE_FSS6)
 #error "HIL_ROLE must be one of the HIL_ROLE_* values in hil_config.h"
 #endif
@@ -35,6 +36,12 @@
 #define HIL_MAG_REQUEST_QUEUE_LEN 8U
 #define HIL_FSS_STREAM_BUFFER_BYTES 128U
 #define HIL_FSS_UART_RX_CHUNK 1U
+#define HIL_FSS_UART_RX_DMA_BYTES 64U
+#define HIL_FSS_FEND 0xC0U
+#define HIL_FSS_CMD_NONE 0U
+#define HIL_FSS_CMD_INIT 1U
+#define HIL_FSS_CMD_TLM 2U
+#define HIL_FSS_CMD_APP 3U
 
 //extern UART_HandleTypeDef huart3;
 
@@ -74,7 +81,38 @@ static QueueHandle_t hil_mag_queue = NULL;
 static StaticStreamBuffer_t hil_fss_stream_tcb;
 static uint8_t hil_fss_stream_storage[HIL_FSS_STREAM_BUFFER_BYTES];
 static StreamBufferHandle_t hil_fss_stream = NULL;
-static uint8_t hil_fss_uart_rx_byte = 0U;
+static uint8_t hil_fss_uart_rx_dma[HIL_FSS_UART_RX_DMA_BYTES];
+
+#if (HIL_ROLE == HIL_ROLE_FSS1)
+static const uint8_t hil_fss_device_id = 0x38U;
+#endif
+#if (HIL_ROLE == HIL_ROLE_FSS2)
+static const uint8_t hil_fss_device_id = 0x39U;
+#endif
+#if (HIL_ROLE == HIL_ROLE_FSS3)
+static const uint8_t hil_fss_device_id = 0x40U;
+#endif
+#if (HIL_ROLE == HIL_ROLE_FSS4)
+static const uint8_t hil_fss_device_id = 0x41U;
+#endif
+#if (HIL_ROLE == HIL_ROLE_FSS5)
+static const uint8_t hil_fss_device_id = 0x42U;
+#endif
+#if (HIL_ROLE == HIL_ROLE_FSS6)
+static const uint8_t hil_fss_device_id = 0x43U;
+#endif
+
+static volatile uint8_t hil_fss_is_init = 0U;
+static volatile uint8_t hil_fss_command_type = HIL_FSS_CMD_NONE;
+static uint16_t hil_fss_rx_crc = 0U;
+static uint16_t hil_fss_cal_crc = 0U;
+static uint16_t hil_fss_rx_len = 0U;
+static init_t hil_fss_rx_init;
+static init_t hil_fss_tx_init;
+static rx_sun_vector_t hil_fss_rx_sun_vector;
+static sun_vector_t hil_fss_tx_sun_vector;
+static rx_application_command_t hil_fss_rx_app_command;
+static tx_application_command_t hil_fss_tx_app_command;
 #endif
 
 #if (HIL_ROLE == HIL_ROLE_IMU)
@@ -342,7 +380,32 @@ void hil_sensor_emulator_init(void)
                                              HIL_FSS_UART_RX_CHUNK,
                                              hil_fss_stream_storage,
                                              &hil_fss_stream_tcb);
-  (void)HAL_UART_Receive_IT(&huart2, &hil_fss_uart_rx_byte, HIL_FSS_UART_RX_CHUNK);
+  hil_fss_is_init = 0U;
+  hil_fss_command_type = HIL_FSS_CMD_NONE;
+  hil_fss_tx_init.fend_start = HIL_FSS_FEND;
+  hil_fss_tx_init.src_addr = hil_fss_device_id;
+  hil_fss_tx_init.mcf = init_ack;
+  hil_fss_tx_init.fend_end = HIL_FSS_FEND;
+
+  hil_fss_tx_app_command.fend_start = HIL_FSS_FEND;
+  hil_fss_tx_app_command.src_addr = hil_fss_device_id;
+  hil_fss_tx_app_command.mcf = app_command_ack;
+  hil_fss_tx_app_command.fend_end = HIL_FSS_FEND;
+
+  hil_fss_tx_sun_vector.fend_start = HIL_FSS_FEND;
+  hil_fss_tx_sun_vector.src_addr = hil_fss_device_id;
+  hil_fss_tx_sun_vector.mcf = app_telemetry_ack;
+  hil_fss_tx_sun_vector.fit_quality = 0xFD;
+  hil_fss_tx_sun_vector.geometry_quality = 0x00;
+  hil_fss_tx_sun_vector.fend_end = HIL_FSS_FEND;
+
+  (void)HAL_UARTEx_ReceiveToIdle_DMA(&huart2,
+                                    hil_fss_uart_rx_dma,
+                                    sizeof(hil_fss_uart_rx_dma));
+  if (huart2.hdmarx != NULL)
+  {
+    __HAL_DMA_DISABLE_IT(huart2.hdmarx, DMA_IT_HT);
+  }
 #endif
 
 #if (HIL_ROLE == HIL_ROLE_IMU)
@@ -463,24 +526,90 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef *hcan)
 
 void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
 {
+  (void)huart;
+}
+
+void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t size)
+{
+
 
 #if (HIL_ROLE >= HIL_ROLE_FSS1) && (HIL_ROLE <= HIL_ROLE_FSS6)
-  if (huart == &huart2)
+  if ((huart == &huart2) && (size > 0U))
   {
     BaseType_t higher_woken = pdFALSE;
+    uint8_t request = 0U;
 
-    if (hil_fss_stream != NULL)
+    if (size >= 4U)
+    {
+      hil_fss_rx_len = size;
+      memcpy(&hil_fss_rx_crc,
+             hil_fss_uart_rx_dma + (size - 3U),
+             sizeof(hil_fss_rx_crc));
+      hil_fss_cal_crc = message_crc16(hil_fss_uart_rx_dma + 1U, size - 4U);
+
+      if ((hil_fss_rx_crc == hil_fss_cal_crc) &&
+          (hil_fss_uart_rx_dma[1] == hil_fss_device_id))
+      {
+        switch (hil_fss_uart_rx_dma[3])
+        {
+          case init_ack:
+            memcpy(&hil_fss_rx_init, hil_fss_uart_rx_dma, size);
+            if (hil_fss_rx_init.init_addr == (uint32_t)flash_start)
+            {
+              hil_fss_is_init = 1U;
+            }
+            hil_fss_tx_init.dest_addr = hil_fss_rx_init.src_addr;
+            hil_fss_tx_init.init_addr = hil_fss_rx_init.init_addr;
+            hil_fss_tx_init.crc = message_crc16(((uint8_t *)&hil_fss_tx_init) + 1U,
+                                                size - 4U);
+            hil_fss_command_type = HIL_FSS_CMD_INIT;
+            break;
+          case app_telemetry_ack:
+            memcpy(&hil_fss_rx_sun_vector, hil_fss_uart_rx_dma, size);
+            hil_fss_tx_sun_vector.dest_addr = hil_fss_rx_sun_vector.src_addr;
+            if (hil_fss_rx_sun_vector.tlm_byte == (uint8_t)vector_float_tlm)
+            {
+              hil_fss_tx_sun_vector.tlm_byte = hil_fss_rx_sun_vector.tlm_byte;
+              if (hil_fss_is_init == 1U)
+              {
+                hil_fss_command_type = HIL_FSS_CMD_TLM;
+              }
+            }
+            break;
+          case app_command_ack:
+            memcpy(&hil_fss_rx_app_command, hil_fss_uart_rx_dma, size);
+            hil_fss_tx_app_command.dest_addr = hil_fss_rx_app_command.src_addr;
+            hil_fss_tx_app_command.crc = message_crc16(((uint8_t *)&hil_fss_tx_app_command) + 1U,
+                                                       3U);
+            if (hil_fss_is_init == 1U)
+            {
+              hil_fss_command_type = HIL_FSS_CMD_APP;
+            }
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    if ((hil_fss_stream != NULL) && (hil_fss_command_type != HIL_FSS_CMD_NONE))
     {
       (void)xStreamBufferSendFromISR(hil_fss_stream,
-                                     &hil_fss_uart_rx_byte,
-                                     HIL_FSS_UART_RX_CHUNK,
+                                     &request,
+                                     sizeof(request),
                                      &higher_woken);
     }
     portYIELD_FROM_ISR(higher_woken);
-    (void)HAL_UART_Receive_IT(&huart2, &hil_fss_uart_rx_byte, HIL_FSS_UART_RX_CHUNK);
+    (void)HAL_UARTEx_ReceiveToIdle_DMA(&huart2,
+                                      hil_fss_uart_rx_dma,
+                                      sizeof(hil_fss_uart_rx_dma));
+    if (huart2.hdmarx != NULL)
+    {
+      __HAL_DMA_DISABLE_IT(huart2.hdmarx, DMA_IT_HT);
+    }
   }
 #else
   (void)huart;
+  (void)size;
 #endif
 }
 
@@ -504,24 +633,37 @@ static void hil_imu_task(void *arg)
 static void hil_imu_tx_rs422(const double gyro[3])
 {
   (void)gyro;
+  static uint8_t count = 0;
   msg.header = 0x55FF81FE;
   msg.data.temp = 40;
   msg.data.seq = 0;
   msg.data.status = 119;
 
-  msg.data.Xrot = (float)gyro[0];
-  msg.data.Yrot = (float)gyro[1];
-  msg.data.Zrot = (float)gyro[2];
+  float Gyro[3];
+
+  Gyro[0] = (float)gyro[0];
+  Gyro[1] = (float)gyro[1];
+  Gyro[2] = (float)gyro[2];
+
+//  msg.data.Xrot = (float)Gyro[0];
+//  msg.data.Yrot = (float)Gyro[1];
+//  msg.data.Zrot = (float)Gyro[2];
+
+
+  reverse_bytes((uint8_t*)&Gyro[0],(uint8_t *)&msg.data.Xrot, 4);
+  reverse_bytes((uint8_t*)&Gyro[1],(uint8_t *)&msg.data.Yrot, 4);
+  reverse_bytes((uint8_t*)&Gyro[2],(uint8_t *)&msg.data.Zrot, 4);
 
   uint32_t crc = calculate_crc32((uint8_t *)&msg.data,sizeof(message_data_format_t));
   reverse_bytes((uint8_t *)&crc,(uint8_t *)&msg.crc, 4);
-
-  HAL_UART_Transmit(&huart3,(uint8_t*)&msg,sizeof(message_format_t), 100);
+  msg.data.seq = count;
+  HAL_UART_Transmit(&huart2,(uint8_t*)&msg,sizeof(message_format_t), 100);
   msg.data.seq++;
-  if(msg.data.seq == 127)
+  count = count+1;
+  if(count == 127)
   {
 
-	  msg.data.seq = 0;
+	  count = 0;
   }
 }
 #endif
@@ -647,14 +789,55 @@ static void hil_fss_task(void *arg)
                              sizeof(rx_byte),
                              portMAX_DELAY) > 0U)
     {
-      hil_cache_read_fss(sun_vec);
-      hil_fss_tx_rs485(sun_vec);
+      switch (hil_fss_command_type)
+      {
+        case HIL_FSS_CMD_INIT:
+          (void)HAL_UART_Transmit(&huart2,
+                                  (uint8_t *)&hil_fss_tx_init,
+                                  sizeof(hil_fss_tx_init) - 1U,
+                                  1000);
+          hil_fss_command_type = HIL_FSS_CMD_NONE;
+          break;
+        case HIL_FSS_CMD_TLM:
+          if (hil_fss_is_init == 1U)
+          {
+            hil_cache_read_fss(sun_vec);
+            hil_fss_tx_rs485(sun_vec);
+          }
+          hil_fss_command_type = HIL_FSS_CMD_NONE;
+          break;
+        case HIL_FSS_CMD_APP:
+          if (hil_fss_is_init == 1U)
+          {
+            (void)HAL_UART_Transmit(&huart2,
+                                    (uint8_t *)&hil_fss_tx_app_command,
+                                    sizeof(hil_fss_tx_app_command) - 1U,
+                                    1000);
+          }
+          hil_fss_command_type = HIL_FSS_CMD_NONE;
+          break;
+        default:
+          break;
+      }
     }
   }
 }
 
 static void hil_fss_tx_rs485(const double sun_vec[3])
 {
-  (void)sun_vec;
+  if (sun_vec == NULL)
+  {
+    return;
+  }
+
+  hil_fss_tx_sun_vector.sun_vector_x = (float)sun_vec[0];
+  hil_fss_tx_sun_vector.sun_vector_y = (float)sun_vec[1];
+  hil_fss_tx_sun_vector.sun_vector_z = (float)sun_vec[2];
+  hil_fss_tx_sun_vector.crc = message_crc16(((uint8_t *)&hil_fss_tx_sun_vector) + 1U, 16U);
+
+  (void)HAL_UART_Transmit(&huart2,
+                          (uint8_t *)&hil_fss_tx_sun_vector,
+                          sizeof(hil_fss_tx_sun_vector),
+                          1000);
 }
 #endif

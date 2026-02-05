@@ -1,4 +1,134 @@
-14:38:02 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+13:21:04 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:294:9: note: in expansion of macro 'NVIC_SystemReset'
+  294 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 116896	    460	  52896	 170252	  2990c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+13:22:33 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:297:9: note: in expansion of macro 'NVIC_SystemReset'
+  297 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 116912	    460	  52896	 170268	  2991c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+13:23:35 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:299:9: note: in expansion of macro 'NVIC_SystemReset'
+  299 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 116928	    460	  52896	 170284	  2992c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+13:34:13 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 116928	    460	  52896	 170284	  2992c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+13:37:26 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:295:9: note: in expansion of macro 'NVIC_SystemReset'
+  295 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 116896	    460	  52896	 170252	  2990c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+13:38:17 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 116896	    460	  52896	 170252	  2990c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+13:39:46 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
 arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -7,19 +137,263 @@ Finished building target: HIL-sensor-emulator.elf
 arm-none-eabi-size  HIL-sensor-emulator.elf 
 arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
    text	   data	    bss	    dec	    hex	filename
- 120576	    460	  52656	 173692	  2a67c	HIL-sensor-emulator.elf
+ 116912	    460	  52896	 170268	  2991c	HIL-sensor-emulator.elf
 Finished building: default.size.stdout
  
 Finished building: HIL-sensor-emulator.list
  
-15:01:46 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+13:43:19 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:303:9: note: in expansion of macro 'NVIC_SystemReset'
+  303 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 116928	    460	  52896	 170284	  2992c	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+14:00:43 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+In file included from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f767xx.h:184,
+                 from ../Drivers/CMSIS/Device/ST/STM32F7xx/Include/stm32f7xx.h:133,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_def.h:29,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_rcc.h:27,
+                 from ../Core/Inc/stm32f7xx_hal_conf.h:274,
+                 from ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal.h:29,
+                 from ../Core/Inc/main.h:30,
+                 from ../Core/Src/main.c:20:
+../Core/Src/main.c: In function 'Error_Handler':
+../Drivers/CMSIS/Include/core_cm7.h:1831:39: warning: statement with no effect [-Wunused-value]
+ 1831 |   #define NVIC_SystemReset            __NVIC_SystemReset
+      |                                       ^~~~~~~~~~~~~~~~~~
+../Core/Src/main.c:303:9: note: in expansion of macro 'NVIC_SystemReset'
+  303 |         NVIC_SystemReset;
+      |         ^~~~~~~~~~~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 118116	    460	  52656	 171232	  29ce0	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+14:01:42 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
 make -j16 all 
 arm-none-eabi-size  HIL-sensor-emulator.elf 
    text	   data	    bss	    dec	    hex	filename
- 120576	    460	  52656	 173692	  2a67c	HIL-sensor-emulator.elf
+ 118116	    460	  52656	 171232	  29ce0	HIL-sensor-emulator.elf
 Finished building: default.size.stdout
  
-15:27:41 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+14:06:31 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 118116	    460	  52656	 171232	  29ce0	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+14:45:00 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+arm-none-eabi-gcc "../Core/Src/usart.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/usart.d" -MT"Core/Src/usart.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/usart.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+14:46:15 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+14:50:38 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+14:51:18 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+14:53:07 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+11:24:40 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+11:40:40 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+11:50:18 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-gcc "../LWIP/App/lwip.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"LWIP/App/lwip.d" -MT"LWIP/App/lwip.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "LWIP/App/lwip.o"
+arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
+arm-none-eabi-gcc "../Core/Src/udp_echoserver.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/udp_echoserver.d" -MT"Core/Src/udp_echoserver.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/udp_echoserver.o"
+../Core/Src/udp_echoserver.c: In function 'udpecho_thread':
+../Core/Src/udp_echoserver.c:94:55: warning: passing argument 1 of 'hil_sensor_emulator_update_from_payload' from incompatible pointer type [-Wincompatible-pointer-types]
+   94 |               hil_sensor_emulator_update_from_payload(payload, sizeof(payload));
+      |                                                       ^~~~~~~
+      |                                                       |
+      |                                                       double *
+In file included from ../Core/Src/udp_echoserver.c:43:
+../Core/Inc/hil_sensor_emulator.h:8:61: note: expected 'const uint8_t *' {aka 'const unsigned char *'} but argument is of type 'double *'
+    8 | void hil_sensor_emulator_update_from_payload(const uint8_t *payload, size_t len);
+      |                                              ~~~~~~~~~~~~~~~^~~~~~~
+arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: HIL-sensor-emulator.elf
+ 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+Finished building: HIL-sensor-emulator.list
+ 
+12:04:06 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+12:10:20 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
+ 
+12:12:58 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
 make -j16 all 
 arm-none-eabi-gcc "../Core/Src/hil_sensor_emulator.c" -mcpu=cortex-m7 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32F767xx -c -I../Core/Inc -I../LWIP/App -I../LWIP/Target -I../Middlewares/Third_Party/LwIP/src/include -I../Middlewares/Third_Party/LwIP/system -I../Drivers/STM32F7xx_HAL_Driver/Inc -I../Drivers/STM32F7xx_HAL_Driver/Inc/Legacy -I../Middlewares/Third_Party/FreeRTOS/Source/include -I../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS -I../Middlewares/Third_Party/FreeRTOS/Source/portable/GCC/ARM_CM7/r0p1 -I../Drivers/BSP/Components/lan8742 -I../Middlewares/Third_Party/LwIP/src/include/netif/ppp -I../Drivers/CMSIS/Device/ST/STM32F7xx/Include -I../Middlewares/Third_Party/LwIP/src/include/lwip -I../Middlewares/Third_Party/LwIP/src/include/lwip/apps -I../Middlewares/Third_Party/LwIP/src/include/lwip/priv -I../Middlewares/Third_Party/LwIP/src/include/lwip/prot -I../Middlewares/Third_Party/LwIP/src/include/netif -I../Middlewares/Third_Party/LwIP/src/include/compat/posix -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/arpa -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/net -I../Middlewares/Third_Party/LwIP/src/include/compat/posix/sys -I../Middlewares/Third_Party/LwIP/src/include/compat/stdc -I../Middlewares/Third_Party/LwIP/system/arch -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/hil_sensor_emulator.d" -MT"Core/Src/hil_sensor_emulator.o" --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -o "Core/Src/hil_sensor_emulator.o"
 arm-none-eabi-gcc -o "HIL-sensor-emulator.elf" @"objects.list"   -mcpu=cortex-m7 -T"C:\Users\Chinnapop\STM32CubeIDE\workspace\HIL-sensor-emulator\STM32F767ZITX_FLASH.ld" --specs=nosys.specs -Wl,-Map="HIL-sensor-emulator.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv5-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
@@ -28,8 +402,15 @@ Finished building target: HIL-sensor-emulator.elf
 arm-none-eabi-size  HIL-sensor-emulator.elf 
 arm-none-eabi-objdump -h -S HIL-sensor-emulator.elf  > "HIL-sensor-emulator.list"
    text	   data	    bss	    dec	    hex	filename
- 120576	    460	  52656	 173692	  2a67c	HIL-sensor-emulator.elf
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
 Finished building: default.size.stdout
  
 Finished building: HIL-sensor-emulator.list
+ 
+12:14:50 **** Incremental Build of configuration Debug for project HIL-sensor-emulator ****
+make -j16 all 
+arm-none-eabi-size  HIL-sensor-emulator.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 121568	    460	  52808	 174836	  2aaf4	HIL-sensor-emulator.elf
+Finished building: default.size.stdout
  

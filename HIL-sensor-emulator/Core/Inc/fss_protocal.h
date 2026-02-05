@@ -187,30 +187,10 @@ typedef struct{
 
 
 
-uint8_t fss_RxBuffer[64];
-uint8_t float_sun_vector[4] = {0x39,0x11,0xA7,0x06};
-uint16_t fss_rxLen;
-uint8_t isInit = 0;
-uint16_t RxCRC;
-uint16_t calCRC;
-
-
-uint32_t over_head;
-init_t rx_init_t;
-init_t tx_init_t;
-rx_sun_vector_t rx_sun_vector;
-sun_vector_t tx_sun_vector;
-rx_application_command_t rx_app_command;
-tx_application_command_t tx_app_command;
-uint8_t command_type = 0;
-float fss_vector[3];
-
-uint8_t fss_buffer[22];
-
 
 uint16_t message_crc16(const uint8_t* data, size_t len);
 uint8_t nsp_message_control_field_encode(uint8_t command_code,uint8_t ack_bit,uint8_t b_bit,uint8_t poll_bit);
-void nsp_message_control_field_decode(uint8_t message_control_field);
+nsp_message_control_field nsp_message_control_field_decode(uint8_t message_control_field);
 
 
 #endif /* INC_FSS_PROTOCAL_H_ */

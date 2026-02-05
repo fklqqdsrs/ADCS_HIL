@@ -113,9 +113,22 @@ int main(void)
   MX_USART2_UART_Init();
   MX_CAN1_Init();
   /* USER CODE BEGIN 2 */
+
   CAN_Filter(&hcan1);
-  HAL_CAN_Start(&hcan1);
-  HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING);
+  if(HAL_CAN_Start(&hcan1) != HAL_OK)
+  {
+	  Error_Handler();
+  }
+ // HAL_Delay(3000);
+
+  if(HAL_CAN_ActivateNotification(&hcan1, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+  {
+	  Error_Handler();
+  }
+
+
+
+
 
   /* USER CODE END 2 */
 
@@ -287,10 +300,11 @@ void Error_Handler(void)
 {
   /* USER CODE BEGIN Error_Handler_Debug */
   /* User can add his own implementation to report the HAL error return state */
-  __disable_irq();
-  while (1)
-  {
-  }
+	NVIC_SystemReset;
+//  __disable_irq();
+//  while (1)
+//  {
+//  }
   /* USER CODE END Error_Handler_Debug */
 }
 

@@ -95,6 +95,7 @@ static void udpecho_thread(void *arg)
             }
             else
             {
+
               ++g_hil_udp_copy_err_count;
             }
           }

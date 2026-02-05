@@ -1,0 +1,10 @@
+10:59:45 **** Incremental Build of configuration Debug for project HIL_feedback ****
+make -j16 all 
+arm-none-eabi-size  HIL_feedback.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 119392	    464	  51096	 170952	  29bc8	HIL_feedback.elf
+Finished building: default.size.stdout
+ 
+
+10:59:46 Build Finished. 0 errors, 0 warnings. (took 625ms)
+

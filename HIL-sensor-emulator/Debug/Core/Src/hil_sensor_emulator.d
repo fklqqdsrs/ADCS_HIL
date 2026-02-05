@@ -46,7 +46,7 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart.h \
  ../Drivers/STM32F7xx_HAL_Driver/Inc/stm32f7xx_hal_uart_ex.h \
  ../Core/Inc/usart.h ../Core/Inc/imu_protocal.h \
- ../Core/Inc/gnss_protocal.h
+ ../Core/Inc/gnss_protocal.h ../Core/Inc/fss_protocal.h
 ../Core/Inc/hil_sensor_emulator.h:
 ../Core/Inc/hil_config.h:
 ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h:
@@ -98,3 +98,4 @@ Core/Src/hil_sensor_emulator.o: ../Core/Src/hil_sensor_emulator.c \
 ../Core/Inc/usart.h:
 ../Core/Inc/imu_protocal.h:
 ../Core/Inc/gnss_protocal.h:
+../Core/Inc/fss_protocal.h:

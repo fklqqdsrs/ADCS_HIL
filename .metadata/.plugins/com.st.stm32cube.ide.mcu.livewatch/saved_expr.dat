@@ -4,8 +4,6 @@ cur_pwmz
 MTQ_currentx
 can_data
 RxHeader
-msg
-msg.data.seq
 cube_msg
 mag
 cubeRxHeader
@@ -24,14 +22,9 @@ vector
 rxLen
 buffer
 can_data
-msg
 buff
 rx_ring
 latest_packet_buf
 payload
-rx_buffer
 g_hil_cache
-gyro[0]
-ecef_pos
-ecef_msg
-TxHeader
+msg
