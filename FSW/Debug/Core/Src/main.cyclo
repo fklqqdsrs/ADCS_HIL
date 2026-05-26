@@ -1,0 +1,5 @@
+../Core/Src/main.cpp:69:5:int main()	5
+../Core/Src/main.cpp:135:6:void SystemClock_Config()	4
+../Core/Src/main.cpp:206:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:224:6:void Error_Handler()	1
+../Core/Src/main.cpp:242:6:void assert_failed(uint8_t*, uint32_t)	1

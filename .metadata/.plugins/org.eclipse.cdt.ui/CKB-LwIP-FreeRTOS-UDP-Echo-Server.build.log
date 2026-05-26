@@ -1,0 +1,10 @@
+17:13:31 **** Incremental Build of configuration Debug for project CKB-LwIP-FreeRTOS-UDP-Echo-Server ****
+make -j16 all 
+arm-none-eabi-size  CKB-LwIP-FreeRTOS-UDP-Echo-Server.elf 
+   text	   data	    bss	    dec	    hex	filename
+ 111664	    140	  70452	 182256	  2c7f0	CKB-LwIP-FreeRTOS-UDP-Echo-Server.elf
+Finished building: default.size.stdout
+ 
+
+17:13:31 Build Finished. 0 errors, 0 warnings. (took 607ms)
+

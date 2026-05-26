@@ -1,0 +1,45 @@
+default:
+  tags:
+    - stm32-hil
+
+stages:
+  - lint
+  - test
+  - build
+
+variables:
+  PIP_CACHE_DIR: "$CI_PROJECT_DIR/.cache/pip"
+
+before_script:
+  - python -m pip install --upgrade pip --break-system-packages
+  - python -m pip install flake8 --break-system-packages
+  - python -m pip install -r unified_config_manager/requirements.txt --break-system-packages
+
+lint:
+  stage: lint
+  script:
+    - python -m flake8 unified_config_manager --count --select=E9,F63,F7,F82 --show-source --statistics
+    - python -m flake8 unified_config_manager --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  allow_failure: true
+
+unit_test:
+  stage: test
+  script:
+    - python -m unittest discover unified_config_manager/tests
+
+cli_test:
+  stage: test
+  script:
+    - python unified_config_manager_cli.py list
+    - python unified_config_manager_cli.py get ENABLE_HW_CAN
+
+# Mock build stage to ensure everything packages correctly
+build_check:
+  stage: build
+  script:
+    - echo "Building project..."
+    - python -m compileall unified_config_manager
+  artifacts:
+    paths:
+      - unified_config_manager/
+    expire_in: 1 week

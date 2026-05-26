@@ -1,0 +1,9 @@
+../Core/Src/main.cpp:86:1:csp_thread_return_t task_server(void*)	5
+../Core/Src/main.cpp:143:1:csp_thread_return_t task_client(void*)	1
+../Core/Src/main.cpp:159:5:int test_csp_server_task(unsigned int, unsigned int)	1
+../Core/Src/main.cpp:170:5:int test_csp_client_task(unsigned int, unsigned int)	1
+../Core/Src/main.cpp:181:5:int test_csp_server_client_task(unsigned int, unsigned int)	2
+../Core/Src/main.cpp:341:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:204:5:int main()	4
+../Core/Src/main.cpp:398:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:419:6:void Error_Handler()	1

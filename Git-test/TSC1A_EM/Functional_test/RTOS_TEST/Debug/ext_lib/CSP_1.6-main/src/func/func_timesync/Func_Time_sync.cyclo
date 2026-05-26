@@ -1,0 +1,13 @@
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:22:10:get_time_sync_ms	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:28:10:get_time_sync_s	2
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:40:6:set_time_sync_ms	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:45:6:set_time_sync_s	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:50:10:get_last_sync_time	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:55:6:HAL_GPIO_EXTI_Callback	2
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:61:6:time_trigger	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:69:1:auto_time_sync	2
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:84:5:enable_auto_time_sync	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:100:5:csp_set_time_sync	4
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:120:5:csp_time_sync_broadcast	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:125:5:csp_get_time_sync	6
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/func/func_timesync/Func_Time_sync.c:164:6:service_time_sync	5

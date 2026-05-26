@@ -1,0 +1,7 @@
+../Drivers/CMSIS/Include/core_cm7.h:2147:34:__NVIC_SystemReset	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:28:5:csp_reboot_hook	0
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:34:5:csp_shutdown_hook	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:42:6:csp_sys_set_reboot	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:48:5:csp_sys_reboot	3
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:58:6:csp_sys_set_shutdown	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/arch/csp_system.c:64:5:csp_sys_shutdown	3

@@ -1,0 +1,14 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:28:10:get_time_sync_ms	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:34:10:get_time_sync_s	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:47:6:set_time_sync_ms	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:52:6:set_time_sync_s	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:57:10:get_last_sync_time	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:61:6:handle_sync_error	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:65:6:HAL_GPIO_EXTI_Callback	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:71:6:time_trigger	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:82:1:auto_time_sync	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:98:5:enable_auto_time_sync	3
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:116:5:csp_set_time_sync	4
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:139:5:csp_time_sync_broadcast	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:144:5:csp_get_time_sync	6
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/Func_Time_sync.c:178:6:service_time_sync	6

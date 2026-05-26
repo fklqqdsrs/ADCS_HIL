@@ -1,0 +1,23 @@
+{
+  "application": "thread",
+  "scenarios": [
+    {
+      "name": "thread_list",
+      "command": "thread_list",
+      "expect": "Registered threads",
+      "timeout_s": 5
+    },
+    {
+      "name": "thread_stat_all",
+      "command": "thread_stat_all",
+      "expect": "Name",
+      "timeout_s": 5
+    },
+    {
+      "name": "thread_help",
+      "command": "thread_help",
+      "expect": "Thread Manager CLI Help",
+      "timeout_s": 5
+    }
+  ]
+}

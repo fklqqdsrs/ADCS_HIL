@@ -1,0 +1,17 @@
+{
+  "application": "csp",
+  "scenarios": [
+    {
+      "name": "csp_uptime",
+      "command": "csp_uptime 11 1000",
+      "expect": "Uptime of node 11",
+      "timeout_s": 5
+    },
+    {
+      "name": "csp_interface",
+      "command": "csp_interface 11 1000",
+      "expect": "Interface node 11",
+      "timeout_s": 5
+    }
+  ]
+}

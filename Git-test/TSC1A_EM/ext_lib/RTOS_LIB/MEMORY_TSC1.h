@@ -1,0 +1,176 @@
+#ifndef INC_MEMORY_TSC1_H_
+#define INC_MEMORY_TSC1_H_
+#include "main.h"
+#include "REG_MAP/newdevice.h"
+#include <stdint.h>
+// rom big data structure
+typedef struct
+{
+ angle_array_t<1> angle_cube_mag;
+ angle_array_t<1> angle_cube_mtq1;
+ angle_array_t<1> angle_cube_mtq2;
+ angle_array_t<1> angle_cube_mtq3;
+ angle_array_t<1> angle_cube_nadir;
+ angle_array_t<1> angle_cube_rwa1;
+ angle_array_t<1> angle_cube_rwa2;
+ angle_array_t<1> angle_cube_rwa3;
+ angle_array_t<1> angle_cube_sun;
+ angle_array_t<1> angle_obc_imu1;
+ angle_array_t<1> angle_obc_imu2;
+ angle_array_t<1> angle_obc_mtq1;
+ angle_array_t<1> angle_obc_mtq2;
+ angle_array_t<1> angle_obc_mtq3;
+ angle_array_t<1> angle_obc_rwa1;
+ angle_array_t<1> angle_obc_rwa2;
+ angle_array_t<1> angle_obc_rwa3;
+ angle_array_t<1> angle_obc_rwa4;
+ float cmd_sat_inertia[6];
+ uint32_t cmd_unix_time;
+ float sen_sat_inertia[6];
+ uint32_t sen_unix_time;
+} rom_bigdata_t;
+
+// ram big data structure
+typedef struct
+{
+ uint8_t cmd_acs;
+ uint8_t cmd_ads;
+ uint8_t cmd_can;
+ uint8_t cmd_cube_acs;
+ uint8_t cmd_cube_ads;
+ int16_t cmd_cube_est_quat[3];
+ int16_t cmd_cube_est_rate[3];
+ int16_t cmd_cube_gyro[3];
+ int16_t cmd_cube_mag[3];
+ int16_t cmd_cube_mtq1;
+ int16_t cmd_cube_mtq2;
+ int16_t cmd_cube_mtq3;
+ int16_t cmd_cube_nadir[3];
+ int16_t cmd_cube_posvel_ecef[3];
+ int16_t cmd_cube_rwa1;
+ int16_t cmd_cube_rwa2;
+ int16_t cmd_cube_rwa3;
+ int16_t cmd_cube_sun[3];
+ uint8_t cmd_i2c;
+ uint8_t cmd_mem;
+ int16_t cmd_model_igrf[3];
+ int16_t cmd_model_posvel_ecef[3];
+ int16_t cmd_model_sun[3];
+ uint8_t cmd_mtq;
+ uint8_t cmd_nothing;
+ int16_t cmd_obc_current;
+ int16_t cmd_obc_imu1[3];
+ int16_t cmd_obc_imu2[3];
+ int16_t cmd_obc_mag1[3];
+ int16_t cmd_obc_mag2[3];
+ int16_t cmd_obc_mtq1;
+ int16_t cmd_obc_mtq2;
+ int16_t cmd_obc_mtq3;
+ int16_t cmd_obc_rwa1;
+ int16_t cmd_obc_rwa2;
+ int16_t cmd_obc_rwa3;
+ int16_t cmd_obc_rwa4;
+ int16_t cmd_obc_temp1;
+ uint8_t cmd_run;
+ uint8_t cmd_rwa;
+ uint8_t cmd_slave;
+ uint8_t cmd_uart;
+ uint8_t mode_acs;
+ uint32_t mode_acs_delay_ms;
+ uint8_t mode_ads;
+ uint32_t mode_ads_delay_ms;
+ uint8_t mode_can;
+ uint32_t mode_can_delay_ms;
+ uint8_t mode_cube_acs;
+ uint32_t mode_cube_acs_delay_ms;
+ uint8_t mode_cube_ads;
+ uint32_t mode_cube_ads_delay_ms;
+ uint8_t mode_fss;
+ uint32_t mode_fss_delay_ms;
+ uint8_t mode_gps;
+ uint32_t mode_gps_delay_ms;
+ uint8_t mode_i2c;
+ uint32_t mode_i2c_delay_ms;
+ uint8_t mode_imu;
+ uint32_t mode_imu_delay_ms;
+ uint8_t mode_mem;
+ uint32_t mode_mem_delay_ms;
+ uint8_t mode_mtm;
+ uint32_t mode_mtm_delay_ms;
+ uint8_t mode_mtq;
+ uint32_t mode_mtq_delay_ms;
+ uint8_t mode_obc_mtq1;
+ uint32_t mode_obc_mtq1_delay_ms;
+ uint8_t mode_obc_mtq2;
+ uint32_t mode_obc_mtq2_delay_ms;
+ uint8_t mode_obc_mtq3;
+ uint32_t mode_obc_mtq3_delay_ms;
+ uint8_t mode_obc_rwa1;
+ uint32_t mode_obc_rwa1_delay_ms;
+ uint8_t mode_obc_rwa2;
+ uint32_t mode_obc_rwa2_delay_ms;
+ uint8_t mode_obc_rwa3;
+ uint32_t mode_obc_rwa3_delay_ms;
+ uint8_t mode_obc_rwa4;
+ uint32_t mode_obc_rwa4_delay_ms;
+ uint8_t mode_run;
+ uint32_t mode_run_delay_ms;
+ uint8_t mode_rwa;
+ uint32_t mode_rwa_delay_ms;
+ uint8_t mode_slave;
+ uint32_t mode_slave_delay_ms;
+ uint8_t mode_uart;
+ uint32_t mode_uart_delay_ms;
+ uint8_t mode_stt;
+ uint32_t mode_stt_delay_ms;
+ uint8_t sen_acs;
+ uint8_t sen_ads;
+ uint8_t sen_can;
+ uint8_t sen_cube_acs;
+ uint8_t sen_cube_ads;
+ int16_t sen_cube_est_quat[3];
+ int16_t sen_cube_est_rate[3];
+ int16_t sen_cube_gyro[3];
+ int16_t sen_cube_mag[3];
+ int16_t sen_cube_mtq1;
+ int16_t sen_cube_mtq2;
+ int16_t sen_cube_mtq3;
+ int16_t sen_cube_nadir[3];
+ int16_t sen_cube_posvel_ecef[3];
+ int16_t sen_cube_rwa1;
+ int16_t sen_cube_rwa2;
+ int16_t sen_cube_rwa3;
+ int16_t sen_cube_sun[3];
+ uint8_t sen_i2c;
+ uint8_t sen_mem;
+ int16_t sen_model_igrf[3];
+ int16_t sen_model_posvel_ecef[3];
+ int16_t sen_model_sun[3];
+ uint8_t sen_mtq;
+ uint8_t sen_nothing;
+ int16_t sen_obc_current;
+ int16_t sen_obc_imu1[3];
+ int16_t sen_obc_imu2[3];
+ int16_t sen_obc_mag1[3];
+ int16_t sen_obc_mag2[3];
+ int16_t sen_obc_mtq1;
+ int16_t sen_obc_mtq2;
+ int16_t sen_obc_mtq3;
+ int16_t sen_obc_rwa1;
+ int16_t sen_obc_rwa2;
+ int16_t sen_obc_rwa3;
+ int16_t sen_obc_rwa4;
+ int16_t sen_obc_temp1;
+ uint8_t sen_run;
+ uint8_t sen_rwa;
+ uint8_t sen_slave;
+ uint8_t sen_uart;
+ uint8_t ping_stat;
+ uint8_t ls_stat;
+} ram_bigdata_t;
+
+// Declare big data structures
+ram_bigdata_t ram_data;
+rom_bigdata_t rom_data;
+
+#endif //MEMORY_TSC1

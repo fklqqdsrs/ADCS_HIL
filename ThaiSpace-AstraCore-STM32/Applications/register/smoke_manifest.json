@@ -1,0 +1,29 @@
+{
+  "application": "register",
+  "scenarios": [
+    {
+      "name": "add_register",
+      "command": "reg_add 11 1 1 U32 rw 1234",
+      "expect": "OK",
+      "timeout_s": 5
+    },
+    {
+      "name": "get_register",
+      "command": "reg_get 11 1 1 U32",
+      "expect": "U32: 1234",
+      "timeout_s": 5
+    },
+    {
+      "name": "set_register",
+      "command": "reg_set 11 1 1 U32 55556",
+      "expect": "OK",
+      "timeout_s": 5
+    },
+    {
+      "name": "reg_status",
+      "command": "reg_status 0",
+      "expect": "USED",
+      "timeout_s": 5
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+# Unified Configuration Manager - GUI Dependencies
+
+# Required for GUI
+PySide6>=6.0.0

@@ -1,0 +1,6 @@
+../Drivers/CMSIS/Include/core_cm7.h:2229:22:void SCB_EnableICache()	1
+../Drivers/CMSIS/Include/core_cm7.h:2281:22:void SCB_EnableDCache()	3
+../Core/Src/main.cpp:68:5:int main()	1
+../Core/Src/main.cpp:131:6:void SystemClock_Config()	4
+../Core/Src/main.cpp:196:6:void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef*)	2
+../Core/Src/main.cpp:214:6:void Error_Handler()	1

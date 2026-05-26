@@ -1,0 +1,10 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/include/csp/csp_rtable.h:149:19:csp_route_set	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:53:6:csp_cmp_set_memcpy	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:57:12:do_cmp_ident	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:83:12:do_cmp_route_set	3
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:98:12:do_cmp_if_stats	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:118:12:do_cmp_peek	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:131:12:do_cmp_poke	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:144:12:do_cmp_clock	4
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:169:12:csp_cmp_handler	8
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_service_handler.c:216:6:csp_service_handler	21

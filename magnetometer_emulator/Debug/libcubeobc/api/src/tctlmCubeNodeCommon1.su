@@ -1,0 +1,4 @@
+C:/Users/Chinnapop/Downloads/Git-test-DEMO/Git-test-DEMO/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeNodeCommon1.c:21:11:tctlmCubeNodeCommon1_setPowerSwitchState	64	static
+C:/Users/Chinnapop/Downloads/Git-test-DEMO/Git-test-DEMO/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeNodeCommon1.c:60:11:tctlmCubeNodeCommon1_getNodeModel	64	static
+C:/Users/Chinnapop/Downloads/Git-test-DEMO/Git-test-DEMO/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeNodeCommon1.c:110:11:tctlmCubeNodeCommon1_getPowerSwitchState	64	static
+C:/Users/Chinnapop/Downloads/Git-test-DEMO/Git-test-DEMO/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeNodeCommon1.c:193:11:tctlmCubeNodeCommon1_getHealthTlm	72	static

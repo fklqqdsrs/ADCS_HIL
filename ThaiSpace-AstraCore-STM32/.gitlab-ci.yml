@@ -1,0 +1,151 @@
+stages:
+  - lint
+  - build
+  - hil
+
+workflow:
+  rules:
+    - when: always
+
+default:
+  tags:
+    - cdh_pc
+  interruptible: true
+
+variables:
+  # Configuration Tool Settings
+  CONFIG_TOOL_REPO: "https://git.narit.or.th/tsc-1/cicd-devops/system-configurator.git"
+  CONFIG_TOOL_TAG: "v2.0.0-astracore"
+  
+  # Project Paths
+  TARGET_DIR: "STM32L496"
+  BIN_DIR: "STM32L496/build"
+  BIN_FILTER: "*.bin"
+
+  # HIL Defaults (Can be overridden by GitLab CI/CD Variables)
+  HIL_COM_PORT: "COM6"
+  HIL_COM_BAUD: "115200"
+  HIL_FLASH_ADDR: "0x08000000"
+  HIL_CUBE_CLI: "C:\\Program Files\\STMicroelectronics\\STM32Cube\\STM32CubeProgrammer\\bin\\STM32_Programmer_CLI.exe"
+
+# ---------- 1. LINT STAGE (Advisory) ----------
+static_analysis:
+  stage: lint
+  allow_failure: true
+  script:
+    - |
+      $ErrorActionPreference = 'Continue'
+      if (!(Test-Path logs)) { New-Item -ItemType Directory -Force -Path logs | Out-Null }
+      Write-Host "Running static analysis (cppcheck)..."
+      if (Get-Command cppcheck -ErrorAction SilentlyContinue) {
+        & cppcheck --enable=warning,performance --inline-suppr -I Core/Inc Applications 2> logs/cppcheck.txt
+        if ($LASTEXITCODE -ne 0) { Write-Host "Cppcheck found issues. Check logs/cppcheck.txt artifact." }
+      } else {
+        Write-Host "WARNING: cppcheck not found, skipping analysis."
+      }
+      exit 0
+  artifacts:
+    when: always
+    paths:
+      - logs/cppcheck.txt
+    expire_in: 7 days
+
+# ---------- 2. BUILD STAGE ----------
+build_firmware:
+  stage: build
+  needs: [static_analysis]
+  script:
+    - |
+      $ErrorActionPreference = 'Stop'
+      
+      # Step 1: Clone Tool
+      if (Test-Path "system-configurator") { Remove-Item -Recurse -Force "system-configurator" }
+      & git clone --depth 1 --branch $env:CONFIG_TOOL_TAG $env:CONFIG_TOOL_REPO "system-configurator"
+      if ($LASTEXITCODE -ne 0) { throw "Git clone failed" }
+      
+      # Step 2: Dependencies
+      & python -m pip install -r "system-configurator/unified_config_manager/requirements.txt" --break-system-packages --quiet
+
+      $cli_path = "system-configurator/unified_config_manager_cli.py"
+      if (!(Test-Path $cli_path)) { throw "CLI tool not found at $cli_path" }
+
+      # Step 3: APPLY HIL OVERRIDES (CRITICAL FOR CORRECT FIRMWARE)
+      if (Test-Path "hil_system_config.json") {
+          Write-Host "Applying HIL-Specific configuration overrides from hil_system_config.json..."
+          $hil_cfg = Get-Content "hil_system_config.json" | ConvertFrom-Json
+          $hil_cfg.psobject.properties | ForEach-Object {
+              Write-Host "Setting: $($_.Name) = $($_.Value)"
+              & python $cli_path set $_.Name $_.Value --fw-src system-configurator
+              if ($LASTEXITCODE -ne 0) { throw "Failed to set config $($_.Name)" }
+          }
+      }
+
+      # Step 4: Export & Compile
+      Write-Host "Exporting configuration for $env:TARGET_DIR..."
+      & python $cli_path export $env:TARGET_DIR --fw-src .
+      if ($LASTEXITCODE -ne 0) { throw "Configuration export failed" }
+
+      Write-Host "Compiling firmware..."
+      Set-Location $env:TARGET_DIR
+      & make clean
+      & make -j16 all
+      if ($LASTEXITCODE -ne 0) { throw "Build failed" }
+    
+  artifacts:
+    name: "AstraCore-Firmware-${CI_COMMIT_SHORT_SHA}"
+    paths:
+      - $BIN_DIR/*.bin
+      - $BIN_DIR/*.elf
+    expire_in: 7 days
+
+# ---------- 3. HIL TEST STAGE ----------
+hil_test:
+  stage: hil
+  needs: [build_firmware]
+  resource_group: stm32-hil
+  script:
+    - |
+      $ErrorActionPreference = 'Stop'
+      
+      # 1. Load HIL Config (Project Defaults)
+      $cfg = if (Test-Path "hil.config.json") { Get-Content "hil.config.json" | ConvertFrom-Json } else { @{} }
+      
+      # 2. Resolve Runner Variables
+      $comPort = if ($env:HIL_COM_PORT) { $env:HIL_COM_PORT } elseif ($cfg.com_port) { $cfg.com_port } else { "COM1" }
+      $comBaud = if ($env:HIL_COM_BAUD) { $env:HIL_COM_BAUD } elseif ($cfg.com_baud) { $cfg.com_baud } else { 115200 }
+      $cubeCli = if ($env:HIL_CUBE_CLI) { $env:HIL_CUBE_CLI } elseif ($cfg.cube_cli) { $cfg.cube_cli } else { "STM32_Programmer_CLI.exe" }
+      $stlinkSn = if ($env:HIL_STLINK_SN) { $env:HIL_STLINK_SN } elseif ($cfg.stlink_sn) { $cfg.stlink_sn } else { "" }
+      $flashAddr = if ($env:HIL_FLASH_ADDR) { $env:HIL_FLASH_ADDR } elseif ($cfg.flash_addr) { $cfg.flash_addr } else { "0x08000000" }
+
+      # 3. Find Firmware and Check Limits
+      $bin = Get-ChildItem -Path (Join-Path $CI_PROJECT_DIR $env:BIN_DIR) -Filter $env:BIN_FILTER | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+      if (-not $bin) { throw "Firmware not found" }
+      
+      $binSize = $bin.Length
+      if ($cfg.max_flash_size -and ($binSize -gt $cfg.max_flash_size)) {
+          throw "FATAL: Firmware size ($binSize bytes) exceeds limit ($($cfg.max_flash_size) bytes)!"
+      }
+
+      # 4. Flash Target
+      Write-Host "Flashing via $cubeCli..."
+      if (!(Test-Path $cubeCli)) { throw "Programmer CLI not found at $cubeCli" }
+      $connect = if ($stlinkSn) { "port=SWD sn=$stlinkSn mode=UR reset=HWrst" } else { "port=SWD mode=UR reset=HWrst" }
+      & "$cubeCli" -c $connect -w "$($bin.FullName)" $flashAddr -v -rst
+      if ($LASTEXITCODE -ne 0) { throw "Flashing failed" }
+
+      # 5. Run Smoke Tests
+      if (!(Test-Path "logs")) { New-Item -ItemType Directory -Force -Path logs | Out-Null }
+      if (!(Test-Path "reports")) { New-Item -ItemType Directory -Force -Path reports | Out-Null }
+      
+      & powershell.exe -File (Join-Path $CI_PROJECT_DIR "scripts/run_smoke_tests.ps1") `
+          -com_port $comPort -com_baud $comBaud -project_dir $CI_PROJECT_DIR `
+          -report_path (Join-Path $CI_PROJECT_DIR "reports/hil_junit.xml") `
+          -log_path (Join-Path $CI_PROJECT_DIR "logs/smoke_tests.log")
+
+  artifacts:
+    when: always
+    reports:
+      junit: reports/hil_junit.xml
+    paths:
+      - logs/
+      - reports/

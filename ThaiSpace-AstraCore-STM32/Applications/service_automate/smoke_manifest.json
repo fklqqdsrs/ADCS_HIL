@@ -1,0 +1,11 @@
+{
+  "application": "service_automate",
+  "scenarios": [
+    {
+      "name": "sched_list",
+      "command": "sched_list",
+      "expect": "ID En Kind Policy Remain",
+      "timeout_s": 5
+    }
+  ]
+}

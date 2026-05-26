@@ -1,0 +1,300 @@
+#ifndef __RT_SERVICE_H__
+#define __RT_SERVICE_H__
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/**
+ * @addtogroup KernelService
+ */
+
+/**@{*/
+
+/**
+ * tsc_container_of - return the member address of ptr, if the type of ptr is the
+ * struct type.
+ */
+#define tsc_container_of(ptr, type, member) \
+    ((type *)((char *)(ptr) - (unsigned long)(&((type *)0)->member)))
+
+
+/**
+ * @brief initialize a list object
+ */
+#define TSC_LIST_OBJECT_INIT(object) { &(object), &(object) }
+
+/**
+ * @brief initialize a list
+ *
+ * @param l list to be initialized
+ */
+static inline void tsc_list_init(tsc_list_t *l)
+{
+    l->next = l->prev = l;
+}
+
+/**
+ * @brief insert a node after a list
+ *
+ * @param l list to insert it
+ * @param n new node to be inserted
+ */
+static inline void tsc_list_insetsc_after(tsc_list_t *l, tsc_list_t *n)
+{
+    l->next->prev = n;
+    n->next = l->next;
+
+    l->next = n;
+    n->prev = l;
+}
+
+/**
+ * @brief insert a node before a list
+ *
+ * @param n new node to be inserted
+ * @param l list to insert it
+ */
+static inline void tsc_list_insetsc_before(tsc_list_t *l, tsc_list_t *n)
+{
+    l->prev->next = n;
+    n->prev = l->prev;
+
+    l->prev = n;
+    n->next = l;
+}
+
+/**
+ * @brief remove node from list.
+ * @param n the node to remove from the list.
+ */
+static inline void tsc_list_remove(tsc_list_t *n)
+{
+    n->next->prev = n->prev;
+    n->prev->next = n->next;
+
+    n->next = n->prev = n;
+}
+
+/**
+ * @brief tests whether a list is empty
+ * @param l the list to test.
+ */
+static inline int tsc_list_isempty(const tsc_list_t *l)
+{
+    return l->next == l;
+}
+
+/**
+ * @brief get the list length
+ * @param l the list to get.
+ */
+static inline unsigned int tsc_list_len(const tsc_list_t *l)
+{
+    unsigned int len = 0;
+    const tsc_list_t *p = l;
+    while (p->next != l)
+    {
+        p = p->next;
+        len ++;
+    }
+
+    return len;
+}
+
+/**
+ * @brief get the struct for this entry
+ * @param node the entry point
+ * @param type the type of structure
+ * @param member the name of list in structure
+ */
+#define tsc_list_entry(node, type, member) \
+    tsc_container_of(node, type, member)
+
+/**
+ * tsc_list_for_each - iterate over a list
+ * @pos:    the tsc_list_t * to use as a loop cursor.
+ * @head:   the head for your list.
+ */
+#define tsc_list_for_each(pos, head) \
+    for (pos = (head)->next; pos != (head); pos = pos->next)
+
+/**
+ * tsc_list_for_each_safe - iterate over a list safe against removal of list entry
+ * @pos:    the tsc_list_t * to use as a loop cursor.
+ * @n:      another tsc_list_t * to use as temporary storage
+ * @head:   the head for your list.
+ */
+#define tsc_list_for_each_safe(pos, n, head) \
+    for (pos = (head)->next, n = pos->next; pos != (head); \
+        pos = n, n = pos->next)
+
+/**
+ * tsc_list_for_each_entry  -   iterate over list of given type
+ * @pos:    the type * to use as a loop cursor.
+ * @head:   the head for your list.
+ * @member: the name of the list_struct within the struct.
+ */
+#define tsc_list_for_each_entry(pos, head, member) \
+    for (pos = tsc_list_entry((head)->next, typeof(*pos), member); \
+         &pos->member != (head); \
+         pos = tsc_list_entry(pos->member.next, typeof(*pos), member))
+
+/**
+ * tsc_list_for_each_entry_safe - iterate over list of given type safe against removal of list entry
+ * @pos:    the type * to use as a loop cursor.
+ * @n:      another type * to use as temporary storage
+ * @head:   the head for your list.
+ * @member: the name of the list_struct within the struct.
+ */
+#define tsc_list_for_each_entry_safe(pos, n, head, member) \
+    for (pos = tsc_list_entry((head)->next, typeof(*pos), member), \
+         n = tsc_list_entry(pos->member.next, typeof(*pos), member); \
+         &pos->member != (head); \
+         pos = n, n = tsc_list_entry(n->member.next, typeof(*n), member))
+
+/**
+ * tsc_list_first_entry - get the first element from a list
+ * @ptr:    the list head to take the element from.
+ * @type:   the type of the struct this is embedded in.
+ * @member: the name of the list_struct within the struct.
+ *
+ * Note, that list is expected to be not empty.
+ */
+#define tsc_list_first_entry(ptr, type, member) \
+    tsc_list_entry((ptr)->next, type, member)
+
+#define RT_SLIST_OBJECT_INIT(object) { NULL }
+
+/**
+ * @brief initialize a single list
+ *
+ * @param l the single list to be initialized
+ */
+static inline void tsc_slist_init(tsc_slist_t *l)
+{
+    l->next = NULL;
+}
+
+static inline void tsc_slist_append(tsc_slist_t *l, tsc_slist_t *n)
+{
+    struct tsc_slist_node *node;
+
+    node = l;
+    while (node->next) node = node->next;
+
+    /* append the node to the tail */
+    node->next = n;
+    n->next = NULL;
+}
+
+static inline void tsc_slist_insert(tsc_slist_t *l, tsc_slist_t *n)
+{
+    n->next = l->next;
+    l->next = n;
+}
+
+static inline unsigned int tsc_slist_len(const tsc_slist_t *l)
+{
+    unsigned int len = 0;
+    const tsc_slist_t *list = l->next;
+    while (list != NULL)
+    {
+        list = list->next;
+        len ++;
+    }
+
+    return len;
+}
+
+static inline tsc_slist_t *tsc_slist_remove(tsc_slist_t *l, tsc_slist_t *n)
+{
+    /* remove slist head */
+    struct tsc_slist_node *node = l;
+    while (node->next && node->next != n) node = node->next;
+
+    /* remove node */
+    if (node->next != (tsc_slist_t *)0) node->next = node->next->next;
+
+    return l;
+}
+
+static inline tsc_slist_t *tsc_slist_first(tsc_slist_t *l)
+{
+    return l->next;
+}
+
+static inline tsc_slist_t *tsc_slist_tail(tsc_slist_t *l)
+{
+    while (l->next) l = l->next;
+
+    return l;
+}
+
+static inline tsc_slist_t *tsc_slist_next(tsc_slist_t *n)
+{
+    return n->next;
+}
+
+static inline int tsc_slist_isempty(tsc_slist_t *l)
+{
+    return l->next == NULL;
+}
+
+/**
+ * @brief get the struct for this single list node
+ * @param node the entry point
+ * @param type the type of structure
+ * @param member the name of list in structure
+ */
+#define tsc_slist_entry(node, type, member) \
+    tsc_container_of(node, type, member)
+
+/**
+ * tsc_slist_for_each - iterate over a single list
+ * @pos:    the tsc_slist_t * to use as a loop cursor.
+ * @head:   the head for your single list.
+ */
+#define tsc_slist_for_each(pos, head) \
+    for (pos = (head)->next; pos != NULL; pos = pos->next)
+
+/**
+ * tsc_slist_for_each_entry  -   iterate over single list of given type
+ * @pos:    the type * to use as a loop cursor.
+ * @head:   the head for your single list.
+ * @member: the name of the list_struct within the struct.
+ */
+#define tsc_slist_for_each_entry(pos, head, member) \
+    for (pos = tsc_slist_entry((head)->next, typeof(*pos), member); \
+         &pos->member != (NULL); \
+         pos = tsc_slist_entry(pos->member.next, typeof(*pos), member))
+
+/**
+ * tsc_slist_first_entry - get the first element from a slist
+ * @ptr:    the slist head to take the element from.
+ * @type:   the type of the struct this is embedded in.
+ * @member: the name of the slist_struct within the struct.
+ *
+ * Note, that slist is expected to be not empty.
+ */
+#define tsc_slist_first_entry(ptr, type, member) \
+    tsc_slist_entry((ptr)->next, type, member)
+
+/**
+ * tsc_slist_tail_entry - get the tail element from a slist
+ * @ptr:    the slist head to take the element from.
+ * @type:   the type of the struct this is embedded in.
+ * @member: the name of the slist_struct within the struct.
+ *
+ * Note, that slist is expected to be not empty.
+ */
+#define tsc_slist_tail_entry(ptr, type, member) \
+    tsc_slist_entry(tsc_slist_tail(ptr), type, member)
+
+/**@}*/
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif

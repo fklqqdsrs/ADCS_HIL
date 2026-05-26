@@ -1,0 +1,15 @@
+../Core/Src/main.c:261:10:message_crc16	4
+../Core/Src/main.c:280:9:nsp_message_control_field_encode	1
+../Core/Src/main.c:294:6:nsp_message_control_field_decode	1
+../Core/Src/main.c:302:6:DWT_Init	1
+../Core/Src/main.c:313:10:DWT_GetClockCycle	1
+../Core/Src/main.c:317:6:can_filter_config	1
+../Core/Src/main.c:351:5:main	4
+../Core/Src/main.c:441:6:SystemClock_Config	4
+../Core/Src/main.c:498:13:MX_CAN1_Init	2
+../Core/Src/main.c:535:13:MX_USART2_UART_Init	2
+../Core/Src/main.c:568:13:MX_DMA_Init	1
+../Core/Src/main.c:586:13:MX_GPIO_Init	1
+../Core/Src/main.c:604:6:HAL_UARTEx_RxEventCallback	12
+../Core/Src/main.c:683:6:HAL_CAN_RxFifo0MsgPendingCallback	4
+../Core/Src/main.c:711:6:Error_Handler	1

@@ -1,0 +1,39 @@
+#ifndef HIL_CONFIG_H
+#define HIL_CONFIG_H
+
+#define HIL_PACKET_DOUBLES 31U
+#define HIL_PACKET_BYTES (HIL_PACKET_DOUBLES * 8U)
+#define HIL_SUN_SENSOR_COUNT 6U
+#define HIL_SUN_VECTOR_SIZE 3U
+
+#define HIL_ROLE_IMU 1U
+#define HIL_ROLE_MAG 2U
+#define HIL_ROLE_GNSS 3U
+#define HIL_ROLE_FSS1 4U
+#define HIL_ROLE_FSS2 5U
+#define HIL_ROLE_FSS3 6U
+#define HIL_ROLE_FSS4 7U
+#define HIL_ROLE_FSS5 8U
+#define HIL_ROLE_FSS6 9U
+
+/* Set HIL_ROLE to one of the HIL_ROLE_* values above. */
+#ifndef HIL_ROLE
+//#define HIL_ROLE HIL_ROLE_IMU
+//#define HIL_ROLE HIL_ROLE_MAG
+//#define HIL_ROLE HIL_ROLE_GNSS
+//#define HIL_ROLE HIL_ROLE_FSS1
+#define HIL_ROLE HIL_ROLE_FSS2
+//#define HIL_ROLE HIL_ROLE_FSS3
+//#define HIL_ROLE HIL_ROLE_FSS4
+//#define HIL_ROLE HIL_ROLE_FSS5
+//#define HIL_ROLE HIL_ROLE_FSS6
+#endif
+
+#ifndef HIL_DOUBLE_BIG_ENDIAN
+#define HIL_DOUBLE_BIG_ENDIAN 0
+#endif
+
+#define HIL_IMU_RATE_HZ 50U
+#define HIL_GNSS_RATE_HZ 1U
+
+#endif

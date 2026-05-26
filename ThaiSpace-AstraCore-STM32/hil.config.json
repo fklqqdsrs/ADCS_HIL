@@ -1,0 +1,10 @@
+{
+  "target_name": "STM32L496ZGTx_TSC1",
+  "max_flash_size": 1048576,
+  "max_ram_size": 327680,
+  "stlink_sn": "066FFF3932504E3043082444",
+  "flash_addr": "0x08000000",
+  "com_port": "COM6",
+  "com_baud": 115200,
+  "uart_timeout_s": 30
+}

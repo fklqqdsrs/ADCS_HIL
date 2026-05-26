@@ -1,0 +1,28 @@
+# Build outputs
+Debug/**/*.o
+Debug/**/*.d
+Debug/**/*.su
+Debug/**/*.cyclo
+Debug/ADCS_Controller.elf
+Debug/ADCS_Controller.map
+Debug/ADCS_Controller.list
+Debug/default.size.stdout
+
+# Local debug/runtime logs
+tmp_gdbserver_*.txt
+*.log
+
+# STM32CubeIDE generated backups
+Core/**/Backup/
+*.bak
+
+# Generated documentation
+docs/*.pdf
+__pycache__/
+*.pyc
+
+# User-local IDE/cache files
+.metadata/
+.stfolder/
+.vscode/.browse.VC.db*
+.vscode/ipch/

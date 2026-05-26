@@ -1,0 +1,23 @@
+{
+  "application": "core",
+  "scenarios": [
+    {
+      "name": "hello",
+      "command": "hello",
+      "expect": "Hello from shell",
+      "timeout_s": 5
+    },
+    {
+      "name": "check_os_heap",
+      "command": "check_os_heap",
+      "expect": "Current free heap:",
+      "timeout_s": 5
+    },
+    {
+      "name": "check_sys_heap",
+      "command": "check_sys_heap",
+      "expect": "Total heap size:",
+      "timeout_s": 5
+    }
+  ]
+}

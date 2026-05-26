@@ -1,0 +1,3 @@
+../Core/Src/fss_protocal.c:14:10:message_crc16	32	static
+../Core/Src/fss_protocal.c:33:9:nsp_message_control_field_encode	24	static
+../Core/Src/fss_protocal.c:47:27:nsp_message_control_field_decode	24	static

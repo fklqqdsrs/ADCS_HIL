@@ -1,0 +1,10 @@
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:51:5:csp_buffer_init	4
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:79:6:csp_buffer_free_resources	2
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:90:7:csp_buffer_get_isr	4
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:109:7:csp_buffer_get	4
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:134:6:csp_buffer_free_isr	6
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:164:6:csp_buffer_free	6
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:198:7:csp_buffer_clone	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:214:5:csp_buffer_remaining	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:218:8:csp_buffer_size	1
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/CSP_1.6-main/src/csp_buffer.c:222:8:csp_buffer_data_size	1

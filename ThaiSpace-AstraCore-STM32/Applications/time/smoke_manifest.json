@@ -1,0 +1,17 @@
+{
+  "application": "time",
+  "scenarios": [
+    {
+      "name": "csp_uptime",
+      "command": "csp_uptime 11 1000",
+      "expect": "Uptime of node 11",
+      "timeout_s": 5
+    },
+    {
+      "name": "csp_cmp_clock",
+      "command": "csp_cmp_clock 11 0 0 1000",
+      "expect": "csp_set_cmp_time",
+      "timeout_s": 5
+    }
+  ]
+}

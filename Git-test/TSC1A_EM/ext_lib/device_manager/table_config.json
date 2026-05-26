@@ -1,0 +1,141 @@
+{
+    "device_no": {
+        "columns": [
+            "Name",
+            "Cmd/Sen",
+            "Add Mode",
+            "Device Type",
+            "Var Type",
+            "Scalar",
+            "Array Size",
+            "Data Location",
+            "Device Axis Type",
+            "Device Axis",
+            "1st Order",
+            "2nd Order",
+            "3rd Order",
+            "1st Angle",
+            "2nd Angle",
+            "3rd Angle"
+        ],
+        "dtypes": {
+            "Name": "str",
+            "Cmd/Sen": "str",
+            "Add Mode": "bool",
+            "Device Type": "str",
+            "Var Type": "str",
+            "Scalar": "float",
+            "Array Size": "int",
+            "Data Location": "str",
+            "Device Axis Type": "str",
+            "Device Axis": "str",
+            "1st Order": "str",
+            "2nd Order": "str",
+            "3rd Order": "str",
+            "1st Angle": "float",
+            "2nd Angle": "float",
+            "3rd Angle": "float"
+        },
+        "default_values": [
+            [
+                "nothing",
+                "0",
+                false,
+                "nothing",
+                "uint8_t",
+                0,
+                1,
+                "ram",
+                "nothing",
+                "xPLUS",
+                "xPLUS",
+                "xPLUS",
+                "xPLUS",
+                0,
+                0,
+                0
+            ]
+        ]
+    },
+    "register": {
+        "columns": [
+            "Register Name",
+            "Address",
+            "Register Type",
+            "Array Size",
+            "Data Location",
+            "Is Mode Register"
+        ],
+        "dtypes": {
+            "Register Name": "str",
+            "Address": "int",
+            "Register Type": "str",
+            "Array Size": "int",
+            "Data Location": "str",
+            "Is Mode Register": "bool"
+        },
+        "default_values": [
+            [
+                "sen_nothing",
+                0,
+                "uint8_t",
+                1,
+                "ram",
+                false
+            ]
+        ]
+    },
+    "mode_manager": {
+        "columns": [
+            "Device Name",
+            "Enum Mode Name",
+            "Register Name",
+            "Task Priority",
+            "Need EvFlag",
+            "Stack Size"
+        ],
+        "dtypes": {
+            "Device Name" : "str",
+            "Enum Mode Name": "str",
+            "Register Name": "str",
+            "Task Priority": "str",
+            "Need EvFlag": "bool",
+            "Stack Size": "int"
+        },
+        "default_values": [
+            [
+                "obc_acs",
+                "obc_acs_enum_t",
+                "obc_acs_mode",
+                "osPriorityNormal",
+                false,
+                128
+            ]
+        ]
+    },
+    "task_manager": {
+        "columns": [
+            "Enum Mode Name",
+            "Enum State",
+            "Enum State Number",
+            "Delay_ms",
+            "Note"
+        ],
+        "dtypes": {
+            "Enum Mode Name": "str",
+            "Enum State": "str",
+            "Enum State Number": "int",
+            "Delay_ms": "int",
+            "Note": "str"
+        },
+        "default_values": [
+            [
+                "mode_obc_acs_mode_mode_enum_t",
+                "nothing",
+                0,
+                50,
+                "mode_obc_acs_mode_mode_enum_t nothing"
+            ]
+        ]
+    }
+}

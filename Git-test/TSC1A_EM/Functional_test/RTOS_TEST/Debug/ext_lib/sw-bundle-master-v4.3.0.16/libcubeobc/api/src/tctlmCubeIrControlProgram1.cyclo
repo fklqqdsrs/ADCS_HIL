@@ -1,0 +1,11 @@
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:21:11:tctlmCubeIrControlProgram1_setRequestDeadPixel	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:53:11:tctlmCubeIrControlProgram1_setImageTransferSetup	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:89:11:tctlmCubeIrControlProgram1_setConfiguration	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:183:11:tctlmCubeIrControlProgram1_setDeadPixels	3
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:224:11:tctlmCubeIrControlProgram1_getRequestedDeadPixel	9
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:283:11:tctlmCubeIrControlProgram1_getHealthTlm	17
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:382:11:tctlmCubeIrControlProgram1_getMeasurementAndTrigger	15
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:469:11:tctlmCubeIrControlProgram1_getMeasurement	15
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:556:11:tctlmCubeIrControlProgram1_getMeasurementMetadata	21
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:663:11:tctlmCubeIrControlProgram1_getConfiguration	63
+C:/Users/Chinnapop/Documents/TSC1A_EM/ext_lib/sw-bundle-master-v4.3.0.16/libcubeobc/api/src/tctlmCubeIrControlProgram1.c:944:11:tctlmCubeIrControlProgram1_getProfileTiming	11

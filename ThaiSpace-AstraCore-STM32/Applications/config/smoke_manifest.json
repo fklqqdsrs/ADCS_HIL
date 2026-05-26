@@ -1,0 +1,29 @@
+{
+  "application": "config",
+  "scenarios": [
+    {
+      "name": "config_whoami",
+      "command": "config_whoami",
+      "expect": "Access Level",
+      "timeout_s": 5
+    },
+    {
+      "name": "config_help",
+      "command": "config_help",
+      "expect": "CONFIG CLI Help",
+      "timeout_s": 5
+    },
+    {
+      "name": "config_list",
+      "command": "config_list",
+      "expect": "config",
+      "timeout_s": 5
+    },
+    {
+      "name": "config_list_all",
+      "command": "config_list_all",
+      "expect": "config",
+      "timeout_s": 5
+    }
+  ]
+}

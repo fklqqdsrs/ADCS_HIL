@@ -1,0 +1,5 @@
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_debug.c:51:6:csp_debug_hook_set	1
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_debug.c:56:6:do_csp_debug	11
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_debug.c:117:6:csp_debug_set_level	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_debug.c:124:5:csp_debug_get_level	2
+C:/Users/thaib/OneDrive/Documents/CSP_1.6/src/csp_debug.c:132:6:csp_debug_toggle_level	2
